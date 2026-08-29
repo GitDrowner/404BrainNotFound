@@ -1,0 +1,38 @@
+{
+  "status": "PASS",
+  "method": "single_global_threshold_maximin_class_then_source_recall",
+  "scores": "outputs/hybrid_groupdro_h100/calibration_scores.jsonl",
+  "scores_sha256": "094d25985cf7c2a754c4728a81890046d54d4913ebc3038948c2125807b1e1ec",
+  "total": 4700,
+  "real": 2350,
+  "fake": 2350,
+  "threshold": 1.0,
+  "worst_source_recall": 0.002,
+  "worst_class_recall": 0.7770212765957447,
+  "source_recalls": {
+    "general::docvqa_real": 1.0,
+    "general::glide_fake": 0.9107692307692308,
+    "general::officehome_real": 0.9852941176470589,
+    "general::vqdm_fake": 0.8711764705882353,
+    "general::wukong_fake": 0.7169230769230769,
+    "general::xray_real": 0.002
+  },
+  "metrics_at_0_5": {
+    "accuracy": 0.7402127659574468,
+    "balanced_accuracy": 0.7402127659574468,
+    "real_accuracy": 0.48425531914893616,
+    "fake_accuracy": 0.9961702127659574,
+    "auroc": 0.8643132639203259,
+    "average_precision": 0.7901604919494968
+  },
+  "metrics_calibrated": {
+    "accuracy": 0.8161702127659575,
+    "balanced_accuracy": 0.8161702127659575,
+    "real_accuracy": 0.7770212765957447,
+    "fake_accuracy": 0.8553191489361702,
+    "auroc": 0.8643132639203259,
+    "average_precision": 0.7901604919494968
+  },
+  "external_eval_only_used": false,
+  "weights_modified": false
+}

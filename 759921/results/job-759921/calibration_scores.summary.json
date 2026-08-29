@@ -1,0 +1,72 @@
+{
+  "checkpoint": "outputs/hybrid_groupdro_h100/best.pt",
+  "checkpoint_sha256": "2df35326275741b3889121f4e8c89b06533aa97194ca4b4faae428d17b03023e",
+  "manifest": "data/hybrid_groupdro/manifests/calibration.jsonl",
+  "manifest_sha256": "a41735bd7c144f593342b186619b1fa3a90a652783f622344435084b830a3ed1",
+  "output": "outputs/hybrid_groupdro_h100/calibration_scores.jsonl",
+  "output_sha256": "094d25985cf7c2a754c4728a81890046d54d4913ebc3038948c2125807b1e1ec",
+  "total": 4700,
+  "real": 2350,
+  "fake": 2350,
+  "metrics_at_0_5": {
+    "accuracy": 0.7402127659574468,
+    "balanced_accuracy": 0.7402127659574468,
+    "real_accuracy": 0.48425531914893616,
+    "fake_accuracy": 0.9961702127659574,
+    "auroc": 0.8643132639203259,
+    "average_precision": 0.7901604919494968
+  },
+  "by_source": {
+    "general::docvqa_real": {
+      "accuracy": 0.7266666666666667,
+      "balanced_accuracy": 0.7266666666666667,
+      "real_accuracy": 0.7266666666666667,
+      "fake_accuracy": NaN,
+      "auroc": NaN,
+      "average_precision": NaN
+    },
+    "general::glide_fake": {
+      "accuracy": 0.9907692307692307,
+      "balanced_accuracy": 0.9907692307692307,
+      "real_accuracy": NaN,
+      "fake_accuracy": 0.9907692307692307,
+      "auroc": NaN,
+      "average_precision": NaN
+    },
+    "general::officehome_real": {
+      "accuracy": 0.6052941176470589,
+      "balanced_accuracy": 0.6052941176470589,
+      "real_accuracy": 0.6052941176470589,
+      "fake_accuracy": NaN,
+      "auroc": NaN,
+      "average_precision": NaN
+    },
+    "general::vqdm_fake": {
+      "accuracy": 0.9976470588235294,
+      "balanced_accuracy": 0.9976470588235294,
+      "real_accuracy": NaN,
+      "fake_accuracy": 0.9976470588235294,
+      "auroc": NaN,
+      "average_precision": NaN
+    },
+    "general::wukong_fake": {
+      "accuracy": 0.9938461538461538,
+      "balanced_accuracy": 0.9938461538461538,
+      "real_accuracy": NaN,
+      "fake_accuracy": 0.9938461538461538,
+      "auroc": NaN,
+      "average_precision": NaN
+    },
+    "general::xray_real": {
+      "accuracy": 0.0,
+      "balanced_accuracy": 0.0,
+      "real_accuracy": 0.0,
+      "fake_accuracy": NaN,
+      "auroc": NaN,
+      "average_precision": NaN
+    }
+  },
+  "training": false,
+  "optimizer_created": false,
+  "weights_modified": false
+}

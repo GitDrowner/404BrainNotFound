@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="zh"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AIGC explanation</title><style>
+body{font-family:system-ui,sans-serif;margin:24px;max-width:1120px;color:#202124} main{display:grid;gap:22px}
+.hero{display:grid;grid-template-columns:minmax(260px,1fr) minmax(260px,1fr);gap:18px;align-items:start}
+img,object{max-width:100%;height:auto} .metric{font-size:2.3rem;font-variant-numeric:tabular-nums}
+.muted{color:#5f6368} .panel{border:1px solid #ddd;padding:16px;border-radius:10px}
+code{word-break:break-all} @media(max-width:720px){.hero{grid-template-columns:1fr} body{margin:12px}}
+</style></head><body><main>
+<section><h1>单图 AIGC 可解释结果</h1><div class="metric">P(AIGC) = 1.0000</div>
+<div class="muted">raw logit +17.5604 · 759921_hybrid_legacy</div></section>
+<section class="hero"><div class="panel"><h2>输入</h2><img src="input.png" alt="input image"></div>
+<div class="panel"><h2>局部 patch 贡献</h2><img src="patch_attribution.png" alt="red patches increase AIGC confidence; blue patches decrease it"></div></section>
+<section class="hero"><div class="panel"><h2>平滑贡献热力图</h2><img src="heatmap_attribution.png" alt="smooth heatmap of patch contributions"><img src="heatmap_colorbar.png" alt="colorbar"></div>
+<div class="panel"><h2>高频残差纹理（wavelet 信号）</h2><img src="heatmap_texture.png" alt="per-pixel high-frequency residual"></div></section>
+<section class="panel"><h2>六类失真下的置信度轨迹</h2><object data="transform_trajectory.svg" type="image/svg+xml"></object></section>
+<section class="panel"><h2>分支反事实贡献</h2><object data="components.svg" type="image/svg+xml"></object></section>
+<section class="panel"><h2>解释边界</h2><p>confidence_contribution = P(AIGC|original) - P(AIGC|patch occluded). Positive values raise AIGC confidence. This is a local counterfactual, not causal proof.</p><p class="muted">热力图按 patch 贡献的 max-abs 归一化，蓝色拉低 / 红色抬高 AIGC 置信度；纹理图为逐像素高频残差（输入信号，非模型输出）。完整数值：<code>explanation.json</code>；逐 patch：<code>patches.jsonl</code>。</p></section>
+</main></body></html>

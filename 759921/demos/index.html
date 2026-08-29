@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>759921 explainability demos</title>
+  <style>
+    :root { color-scheme: light; font-family: Inter, system-ui, sans-serif; color: #202124; }
+    body { margin: 28px auto; padding: 0 20px; max-width: 1320px; background: #f7f8fa; }
+    h1 { margin-bottom: 8px; }
+    .note { color: #5f6368; max-width: 920px; }
+    .grid { display: grid; gap: 22px; grid-template-columns: repeat(auto-fit, minmax(560px, 1fr)); margin-top: 24px; }
+    .card { background: white; border: 1px solid #dfe1e5; border-radius: 14px; padding: 18px; box-shadow: 0 2px 8px #0000000a; }
+    .metric { font-size: 1.55rem; font-variant-numeric: tabular-nums; }
+    .correct { color: #137333; } .wrong { color: #b3261e; }
+    .images { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 14px 0; }
+    figure { margin: 0; } img { width: 100%; aspect-ratio: 1; object-fit: contain; background: #eee; border-radius: 8px; }
+    figcaption { font-size: 12px; color: #5f6368; margin-top: 5px; }
+    a { color: #185abc; } code { font-size: 12px; }
+    @media(max-width: 700px) { .grid { grid-template-columns: 1fr; } .images { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <h1>759921 单图解释 demo</h1>
+  <p class="note">每张图使用同一 checkpoint、4×4 patch 遮挡和完整 16 条赛题变换。贡献热图为单图 max-abs 归一化，红色提高、蓝色降低 AIGC confidence；纹理图是高频残差输入信号，不是伪造区域真值。页面中的 correct/false positive 仅按名义阈值 0.5 标注；该 sigmoid 未做概率校准，也没有套用包内另存的分类阈值。</p>
+  <main class="grid">
+    <article class="card">
+      <h2>COCO real · caption pair 0</h2>
+      <div class="metric wrong">GT real · P(AIGC) = 0.982151 · false positive @ 0.5</div>
+      <div class="images">
+        <figure><img src="dalle_pair_real_00000/input.png"><figcaption>原图</figcaption></figure>
+        <figure><img src="dalle_pair_real_00000/heatmap_attribution.png"><figcaption>平滑 patch 贡献</figcaption></figure>
+        <figure><img src="dalle_pair_real_00000/heatmap_texture.png"><figcaption>高频残差纹理</figcaption></figure>
+      </div>
+      <a href="dalle_pair_real_00000/index.html">打开完整解释页</a>
+    </article>
+    <article class="card">
+      <h2>DALL·E 3 fake · caption pair 0</h2>
+      <div class="metric correct">GT AIGC · P(AIGC) = 0.999995 · correct @ 0.5</div>
+      <div class="images">
+        <figure><img src="dalle_pair_fake_00000/input.png"><figcaption>原图</figcaption></figure>
+        <figure><img src="dalle_pair_fake_00000/heatmap_attribution.png"><figcaption>平滑 patch 贡献</figcaption></figure>
+        <figure><img src="dalle_pair_fake_00000/heatmap_texture.png"><figcaption>高频残差纹理</figcaption></figure>
+      </div>
+      <a href="dalle_pair_fake_00000/index.html">打开完整解释页</a>
+    </article>
+    <article class="card">
+      <h2>WildFake real · real_cat</h2>
+      <div class="metric correct">GT real · P(AIGC) = 0.000045 · correct @ 0.5</div>
+      <div class="images">
+        <figure><img src="wildfake_real_f5a51/input.png"><figcaption>原图</figcaption></figure>
+        <figure><img src="wildfake_real_f5a51/heatmap_attribution.png"><figcaption>平滑 patch 贡献</figcaption></figure>
+        <figure><img src="wildfake_real_f5a51/heatmap_texture.png"><figcaption>高频残差纹理</figcaption></figure>
+      </div>
+      <a href="wildfake_real_f5a51/index.html">打开完整解释页</a>
+    </article>
+    <article class="card">
+      <h2>CIFAKE fake · Stable Diffusion 1.4</h2>
+      <div class="metric correct">GT AIGC · P(AIGC) = 1.000000 · correct @ 0.5</div>
+      <div class="images">
+        <figure><img src="cifake_sd14_fake_26167/input.png"><figcaption>原图（原始 32×32）</figcaption></figure>
+        <figure><img src="cifake_sd14_fake_26167/heatmap_attribution.png"><figcaption>平滑 patch 贡献</figcaption></figure>
+        <figure><img src="cifake_sd14_fake_26167/heatmap_texture.png"><figcaption>高频残差纹理</figcaption></figure>
+      </div>
+      <a href="cifake_sd14_fake_26167/index.html">打开完整解释页</a>
+    </article>
+  </main>
+</body>
+</html>

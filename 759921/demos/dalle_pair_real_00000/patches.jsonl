@@ -1,0 +1,16 @@
+{"patch_id": 0, "box_xyxy": [0, 0, 128, 82], "probability_when_occluded": 0.9826462268829346, "confidence_contribution": -0.0004956722259521484}
+{"patch_id": 1, "box_xyxy": [128, 0, 256, 82], "probability_when_occluded": 0.9807625412940979, "confidence_contribution": 0.0013880133628845215}
+{"patch_id": 2, "box_xyxy": [256, 0, 384, 82], "probability_when_occluded": 0.9767901301383972, "confidence_contribution": 0.005360424518585205}
+{"patch_id": 3, "box_xyxy": [384, 0, 512, 82], "probability_when_occluded": 0.9897788166999817, "confidence_contribution": -0.007628262042999268}
+{"patch_id": 4, "box_xyxy": [0, 82, 128, 163], "probability_when_occluded": 0.9866400361061096, "confidence_contribution": -0.004489481449127197}
+{"patch_id": 5, "box_xyxy": [128, 82, 256, 163], "probability_when_occluded": 0.9787150621414185, "confidence_contribution": 0.003435492515563965}
+{"patch_id": 6, "box_xyxy": [256, 82, 384, 163], "probability_when_occluded": 0.9882065653800964, "confidence_contribution": -0.006056010723114014}
+{"patch_id": 7, "box_xyxy": [384, 82, 512, 163], "probability_when_occluded": 0.9841291904449463, "confidence_contribution": -0.001978635787963867}
+{"patch_id": 8, "box_xyxy": [0, 163, 128, 244], "probability_when_occluded": 0.9886398315429688, "confidence_contribution": -0.006489276885986328}
+{"patch_id": 9, "box_xyxy": [128, 163, 256, 244], "probability_when_occluded": 0.9835312366485596, "confidence_contribution": -0.0013806819915771484}
+{"patch_id": 10, "box_xyxy": [256, 163, 384, 244], "probability_when_occluded": 0.9841071367263794, "confidence_contribution": -0.0019565820693969727}
+{"patch_id": 11, "box_xyxy": [384, 163, 512, 244], "probability_when_occluded": 0.9946860074996948, "confidence_contribution": -0.012535452842712402}
+{"patch_id": 12, "box_xyxy": [0, 244, 128, 326], "probability_when_occluded": 0.9811757206916809, "confidence_contribution": 0.0009748339653015137}
+{"patch_id": 13, "box_xyxy": [128, 244, 256, 326], "probability_when_occluded": 0.9914012551307678, "confidence_contribution": -0.0092507004737854}
+{"patch_id": 14, "box_xyxy": [256, 244, 384, 326], "probability_when_occluded": 0.9821797609329224, "confidence_contribution": -2.9206275939941406e-05}
+{"patch_id": 15, "box_xyxy": [384, 244, 512, 326], "probability_when_occluded": 0.987000584602356, "confidence_contribution": -0.004850029945373535}

@@ -1,0 +1,178 @@
+[
+  {
+    "variant": "clean",
+    "transform": "clean",
+    "value": null,
+    "accuracy": 0.764,
+    "balanced_accuracy": 0.764,
+    "real_accuracy": 0.992,
+    "fake_accuracy": 0.536,
+    "auroc": 0.9618485,
+    "average_precision": 0.9564203525079935
+  },
+  {
+    "variant": "jpeg_q90",
+    "transform": "jpeg",
+    "value": 90,
+    "accuracy": 0.754,
+    "balanced_accuracy": 0.754,
+    "real_accuracy": 0.988,
+    "fake_accuracy": 0.52,
+    "auroc": 0.954595,
+    "average_precision": 0.94637658443753
+  },
+  {
+    "variant": "jpeg_q70",
+    "transform": "jpeg",
+    "value": 70,
+    "accuracy": 0.746,
+    "balanced_accuracy": 0.746,
+    "real_accuracy": 0.989,
+    "fake_accuracy": 0.503,
+    "auroc": 0.949146,
+    "average_precision": 0.9427230739336735
+  },
+  {
+    "variant": "jpeg_q50",
+    "transform": "jpeg",
+    "value": 50,
+    "accuracy": 0.726,
+    "balanced_accuracy": 0.726,
+    "real_accuracy": 0.99,
+    "fake_accuracy": 0.462,
+    "auroc": 0.9480405,
+    "average_precision": 0.941523661875065
+  },
+  {
+    "variant": "jpeg_q30",
+    "transform": "jpeg",
+    "value": 30,
+    "accuracy": 0.656,
+    "balanced_accuracy": 0.656,
+    "real_accuracy": 0.989,
+    "fake_accuracy": 0.323,
+    "auroc": 0.9290185,
+    "average_precision": 0.9196906206812913
+  },
+  {
+    "variant": "blur_sigma0.5",
+    "transform": "blur",
+    "value": 0.5,
+    "accuracy": 0.7655,
+    "balanced_accuracy": 0.7655000000000001,
+    "real_accuracy": 0.995,
+    "fake_accuracy": 0.536,
+    "auroc": 0.9700845,
+    "average_precision": 0.9658757495795701
+  },
+  {
+    "variant": "blur_sigma1",
+    "transform": "blur",
+    "value": 1.0,
+    "accuracy": 0.7665,
+    "balanced_accuracy": 0.7665,
+    "real_accuracy": 0.985,
+    "fake_accuracy": 0.548,
+    "auroc": 0.9679465,
+    "average_precision": 0.9566079225571954
+  },
+  {
+    "variant": "blur_sigma2",
+    "transform": "blur",
+    "value": 2.0,
+    "accuracy": 0.7805,
+    "balanced_accuracy": 0.7805,
+    "real_accuracy": 0.99,
+    "fake_accuracy": 0.571,
+    "auroc": 0.972184,
+    "average_precision": 0.9639581475555724
+  },
+  {
+    "variant": "resize_0.5x",
+    "transform": "resize",
+    "value": 0.5,
+    "accuracy": 0.771,
+    "balanced_accuracy": 0.771,
+    "real_accuracy": 0.989,
+    "fake_accuracy": 0.553,
+    "auroc": 0.9610795,
+    "average_precision": 0.9530789034702636
+  },
+  {
+    "variant": "resize_0.25x",
+    "transform": "resize",
+    "value": 0.25,
+    "accuracy": 0.7665,
+    "balanced_accuracy": 0.7665,
+    "real_accuracy": 0.992,
+    "fake_accuracy": 0.541,
+    "auroc": 0.972628,
+    "average_precision": 0.9656662902504327
+  },
+  {
+    "variant": "noise_sigma0.02",
+    "transform": "noise",
+    "value": 0.02,
+    "accuracy": 0.6905,
+    "balanced_accuracy": 0.6905,
+    "real_accuracy": 0.994,
+    "fake_accuracy": 0.387,
+    "auroc": 0.9555975,
+    "average_precision": 0.9489731294718559
+  },
+  {
+    "variant": "noise_sigma0.05",
+    "transform": "noise",
+    "value": 0.05,
+    "accuracy": 0.632,
+    "balanced_accuracy": 0.632,
+    "real_accuracy": 0.994,
+    "fake_accuracy": 0.27,
+    "auroc": 0.9400835,
+    "average_precision": 0.9287674108718841
+  },
+  {
+    "variant": "noise_sigma0.10",
+    "transform": "noise",
+    "value": 0.1,
+    "accuracy": 0.601,
+    "balanced_accuracy": 0.601,
+    "real_accuracy": 0.986,
+    "fake_accuracy": 0.216,
+    "auroc": 0.9153245,
+    "average_precision": 0.8907611915365158
+  },
+  {
+    "variant": "color_minus20",
+    "transform": "color",
+    "value": 0.8,
+    "accuracy": 0.809,
+    "balanced_accuracy": 0.8089999999999999,
+    "real_accuracy": 0.974,
+    "fake_accuracy": 0.644,
+    "auroc": 0.947311,
+    "average_precision": 0.9317476695899192
+  },
+  {
+    "variant": "color_plus20",
+    "transform": "color",
+    "value": 1.2,
+    "accuracy": 0.72,
+    "balanced_accuracy": 0.72,
+    "real_accuracy": 0.988,
+    "fake_accuracy": 0.452,
+    "auroc": 0.9558485,
+    "average_precision": 0.9456756519385167
+  },
+  {
+    "variant": "center_crop_80",
+    "transform": "crop",
+    "value": 0.8,
+    "accuracy": 0.7755,
+    "balanced_accuracy": 0.7755,
+    "real_accuracy": 0.987,
+    "fake_accuracy": 0.564,
+    "auroc": 0.954519,
+    "average_precision": 0.946057929753484
+  }
+]

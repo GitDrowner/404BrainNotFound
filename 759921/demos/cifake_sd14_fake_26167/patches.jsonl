@@ -1,0 +1,16 @@
+{"patch_id": 0, "box_xyxy": [0, 0, 8, 8], "probability_when_occluded": 0.9999998807907104, "confidence_contribution": 1.1920928955078125e-07}
+{"patch_id": 1, "box_xyxy": [8, 0, 16, 8], "probability_when_occluded": 1.0, "confidence_contribution": 0.0}
+{"patch_id": 2, "box_xyxy": [16, 0, 24, 8], "probability_when_occluded": 1.0, "confidence_contribution": 0.0}
+{"patch_id": 3, "box_xyxy": [24, 0, 32, 8], "probability_when_occluded": 1.0, "confidence_contribution": 0.0}
+{"patch_id": 4, "box_xyxy": [0, 8, 8, 16], "probability_when_occluded": 0.9999998807907104, "confidence_contribution": 1.1920928955078125e-07}
+{"patch_id": 5, "box_xyxy": [8, 8, 16, 16], "probability_when_occluded": 1.0, "confidence_contribution": 0.0}
+{"patch_id": 6, "box_xyxy": [16, 8, 24, 16], "probability_when_occluded": 0.9999996423721313, "confidence_contribution": 3.5762786865234375e-07}
+{"patch_id": 7, "box_xyxy": [24, 8, 32, 16], "probability_when_occluded": 1.0, "confidence_contribution": 0.0}
+{"patch_id": 8, "box_xyxy": [0, 16, 8, 24], "probability_when_occluded": 1.0, "confidence_contribution": 0.0}
+{"patch_id": 9, "box_xyxy": [8, 16, 16, 24], "probability_when_occluded": 1.0, "confidence_contribution": 0.0}
+{"patch_id": 10, "box_xyxy": [16, 16, 24, 24], "probability_when_occluded": 0.9999992847442627, "confidence_contribution": 7.152557373046875e-07}
+{"patch_id": 11, "box_xyxy": [24, 16, 32, 24], "probability_when_occluded": 1.0, "confidence_contribution": 0.0}
+{"patch_id": 12, "box_xyxy": [0, 24, 8, 32], "probability_when_occluded": 1.0, "confidence_contribution": 0.0}
+{"patch_id": 13, "box_xyxy": [8, 24, 16, 32], "probability_when_occluded": 1.0, "confidence_contribution": 0.0}
+{"patch_id": 14, "box_xyxy": [16, 24, 24, 32], "probability_when_occluded": 1.0, "confidence_contribution": 0.0}
+{"patch_id": 15, "box_xyxy": [24, 24, 32, 32], "probability_when_occluded": 1.0, "confidence_contribution": 0.0}

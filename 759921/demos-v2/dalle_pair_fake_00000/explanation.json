@@ -1,0 +1,2338 @@
+{
+  "schema_version": "aigc-explanation-v1",
+  "model": {
+    "method": "759921_hybrid_legacy",
+    "checkpoint": "deliverables/aigc_explainability_extensions_20260829_v1/759921/checkpoint/best.pt",
+    "checkpoint_sha256": "2df35326275741b3889121f4e8c89b06533aa97194ca4b4faae428d17b03023e",
+    "calibration": null
+  },
+  "image": {
+    "path": "data/external_eval_only/dalle3_advanced/images/fake/00000.jpg",
+    "width": 270,
+    "height": 270,
+    "sha256": "23a61e9319bc1573316ae2c02251ebe77336f84d402b988176285fcc78638e52"
+  },
+  "prediction": {
+    "raw_logit": 12.158904075622559,
+    "calibrated_logit": 12.158904075622559,
+    "probability_fake": 0.9999947547912598,
+    "wavelet_similarity": 0.9953463077545166
+  },
+  "attribution": {
+    "method": "hierarchical_native_image_patch_occlusion_blur",
+    "semantics": "Primary map uses raw_logit_contribution = logit(original) - logit(region occluded), avoiding sigmoid saturation. Probability deltas are retained. Refined regions are selected only by coarse absolute raw-logit contribution. This is a local counterfactual, not causal proof.",
+    "coarse_grid": [
+      6,
+      6
+    ],
+    "refinement": {
+      "top_k": 6,
+      "local_grid": [
+        3,
+        3
+      ],
+      "selected_parent_patch_ids": [
+        16,
+        35,
+        17,
+        0,
+        18,
+        10
+      ]
+    },
+    "patches": [
+      {
+        "patch_id": 0,
+        "box_xyxy": [
+          0,
+          0,
+          45,
+          45
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999980926513672,
+        "confidence_contribution": -3.337860107421875e-06,
+        "raw_logit_when_occluded": 13.15810489654541,
+        "raw_logit_contribution": -0.9992008209228516,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.064475059509277,
+          "total_raw_logit_contribution": 0.09442901611328125,
+          "wavelet_similarity_when_suppressed": 0.9954909682273865,
+          "wavelet_similarity_contribution": -0.00014466047286987305,
+          "wavelet_only_raw_logit_when_suppressed": 12.158895492553711,
+          "wavelet_only_raw_logit_contribution": 8.58306884765625e-06
+        }
+      },
+      {
+        "patch_id": 1,
+        "box_xyxy": [
+          45,
+          0,
+          90,
+          45
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999966621398926,
+        "confidence_contribution": -1.9073486328125e-06,
+        "raw_logit_when_occluded": 12.620538711547852,
+        "raw_logit_contribution": -0.46163463592529297,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 11.89259147644043,
+          "total_raw_logit_contribution": 0.2663125991821289,
+          "wavelet_similarity_when_suppressed": 0.9952607154846191,
+          "wavelet_similarity_contribution": 8.559226989746094e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158900260925293,
+          "wavelet_only_raw_logit_contribution": 3.814697265625e-06
+        }
+      },
+      {
+        "patch_id": 2,
+        "box_xyxy": [
+          90,
+          0,
+          135,
+          45
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999964237213135,
+        "confidence_contribution": -1.6689300537109375e-06,
+        "raw_logit_when_occluded": 12.526971817016602,
+        "raw_logit_contribution": -0.36806774139404297,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 11.936795234680176,
+          "total_raw_logit_contribution": 0.2221088409423828,
+          "wavelet_similarity_when_suppressed": 0.9954216480255127,
+          "wavelet_similarity_contribution": -7.534027099609375e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 3,
+        "box_xyxy": [
+          135,
+          0,
+          180,
+          45
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999953508377075,
+        "confidence_contribution": -5.960464477539062e-07,
+        "raw_logit_when_occluded": 12.28802490234375,
+        "raw_logit_contribution": -0.1291208267211914,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.00191593170166,
+          "total_raw_logit_contribution": 0.15698814392089844,
+          "wavelet_similarity_when_suppressed": 0.9955613613128662,
+          "wavelet_similarity_contribution": -0.00021505355834960938,
+          "wavelet_only_raw_logit_when_suppressed": 12.158895492553711,
+          "wavelet_only_raw_logit_contribution": 8.58306884765625e-06
+        }
+      },
+      {
+        "patch_id": 4,
+        "box_xyxy": [
+          180,
+          0,
+          225,
+          45
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999954700469971,
+        "confidence_contribution": -7.152557373046875e-07,
+        "raw_logit_when_occluded": 12.304252624511719,
+        "raw_logit_contribution": -0.14534854888916016,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.282740592956543,
+          "total_raw_logit_contribution": -0.12383651733398438,
+          "wavelet_similarity_when_suppressed": 0.9956479668617249,
+          "wavelet_similarity_contribution": -0.00030165910720825195,
+          "wavelet_only_raw_logit_when_suppressed": 12.158896446228027,
+          "wavelet_only_raw_logit_contribution": 7.62939453125e-06
+        }
+      },
+      {
+        "patch_id": 5,
+        "box_xyxy": [
+          225,
+          0,
+          270,
+          45
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999947547912598,
+        "confidence_contribution": 0.0,
+        "raw_logit_when_occluded": 12.163772583007812,
+        "raw_logit_contribution": -0.004868507385253906,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.031064987182617,
+          "total_raw_logit_contribution": 0.1278390884399414,
+          "wavelet_similarity_when_suppressed": 0.9954842925071716,
+          "wavelet_similarity_contribution": -0.0001379847526550293,
+          "wavelet_only_raw_logit_when_suppressed": 12.158895492553711,
+          "wavelet_only_raw_logit_contribution": 8.58306884765625e-06
+        }
+      },
+      {
+        "patch_id": 6,
+        "box_xyxy": [
+          0,
+          45,
+          45,
+          90
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.999996542930603,
+        "confidence_contribution": -1.7881393432617188e-06,
+        "raw_logit_when_occluded": 12.561963081359863,
+        "raw_logit_contribution": -0.4030590057373047,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.070643424987793,
+          "total_raw_logit_contribution": 0.08826065063476562,
+          "wavelet_similarity_when_suppressed": 0.9953856468200684,
+          "wavelet_similarity_contribution": -3.933906555175781e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 7,
+        "box_xyxy": [
+          45,
+          45,
+          90,
+          90
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999961853027344,
+        "confidence_contribution": -1.430511474609375e-06,
+        "raw_logit_when_occluded": 12.463651657104492,
+        "raw_logit_contribution": -0.3047475814819336,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.172602653503418,
+          "total_raw_logit_contribution": -0.013698577880859375,
+          "wavelet_similarity_when_suppressed": 0.9951765537261963,
+          "wavelet_similarity_contribution": 0.0001697540283203125,
+          "wavelet_only_raw_logit_when_suppressed": 12.158903121948242,
+          "wavelet_only_raw_logit_contribution": 9.5367431640625e-07
+        }
+      },
+      {
+        "patch_id": 8,
+        "box_xyxy": [
+          90,
+          45,
+          135,
+          90
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999964237213135,
+        "confidence_contribution": -1.6689300537109375e-06,
+        "raw_logit_when_occluded": 12.54006290435791,
+        "raw_logit_contribution": -0.38115882873535156,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.583107948303223,
+          "total_raw_logit_contribution": -0.42420387268066406,
+          "wavelet_similarity_when_suppressed": 0.995343804359436,
+          "wavelet_similarity_contribution": 2.5033950805664062e-06,
+          "wavelet_only_raw_logit_when_suppressed": 12.158897399902344,
+          "wavelet_only_raw_logit_contribution": 6.67572021484375e-06
+        }
+      },
+      {
+        "patch_id": 9,
+        "box_xyxy": [
+          135,
+          45,
+          180,
+          90
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999974966049194,
+        "confidence_contribution": -2.7418136596679688e-06,
+        "raw_logit_when_occluded": 12.89510726928711,
+        "raw_logit_contribution": -0.7362031936645508,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.328465461730957,
+          "total_raw_logit_contribution": -0.16956138610839844,
+          "wavelet_similarity_when_suppressed": 0.9954176545143127,
+          "wavelet_similarity_contribution": -7.134675979614258e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 10,
+        "box_xyxy": [
+          180,
+          45,
+          225,
+          90
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.999997615814209,
+        "confidence_contribution": -2.86102294921875e-06,
+        "raw_logit_when_occluded": 12.932967185974121,
+        "raw_logit_contribution": -0.7740631103515625,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.060407638549805,
+          "total_raw_logit_contribution": 0.0984964370727539,
+          "wavelet_similarity_when_suppressed": 0.9950758814811707,
+          "wavelet_similarity_contribution": 0.00027042627334594727,
+          "wavelet_only_raw_logit_when_suppressed": 12.158903121948242,
+          "wavelet_only_raw_logit_contribution": 9.5367431640625e-07
+        }
+      },
+      {
+        "patch_id": 11,
+        "box_xyxy": [
+          225,
+          45,
+          270,
+          90
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999948740005493,
+        "confidence_contribution": -1.1920928955078125e-07,
+        "raw_logit_when_occluded": 12.188974380493164,
+        "raw_logit_contribution": -0.03007030487060547,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.004233360290527,
+          "total_raw_logit_contribution": 0.15467071533203125,
+          "wavelet_similarity_when_suppressed": 0.9952816963195801,
+          "wavelet_similarity_contribution": 6.461143493652344e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158900260925293,
+          "wavelet_only_raw_logit_contribution": 3.814697265625e-06
+        }
+      },
+      {
+        "patch_id": 12,
+        "box_xyxy": [
+          0,
+          90,
+          45,
+          135
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999967813491821,
+        "confidence_contribution": -2.0265579223632812e-06,
+        "raw_logit_when_occluded": 12.651780128479004,
+        "raw_logit_contribution": -0.4928760528564453,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.487768173217773,
+          "total_raw_logit_contribution": -0.32886409759521484,
+          "wavelet_similarity_when_suppressed": 0.9954869747161865,
+          "wavelet_similarity_contribution": -0.00014066696166992188,
+          "wavelet_only_raw_logit_when_suppressed": 12.158895492553711,
+          "wavelet_only_raw_logit_contribution": 8.58306884765625e-06
+        }
+      },
+      {
+        "patch_id": 13,
+        "box_xyxy": [
+          45,
+          90,
+          90,
+          135
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999945163726807,
+        "confidence_contribution": 2.384185791015625e-07,
+        "raw_logit_when_occluded": 12.110233306884766,
+        "raw_logit_contribution": 0.04867076873779297,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 11.987683296203613,
+          "total_raw_logit_contribution": 0.1712207794189453,
+          "wavelet_similarity_when_suppressed": 0.9951391220092773,
+          "wavelet_similarity_contribution": 0.0002071857452392578,
+          "wavelet_only_raw_logit_when_suppressed": 12.158904075622559,
+          "wavelet_only_raw_logit_contribution": 0.0
+        }
+      },
+      {
+        "patch_id": 14,
+        "box_xyxy": [
+          90,
+          90,
+          135,
+          135
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999954700469971,
+        "confidence_contribution": -7.152557373046875e-07,
+        "raw_logit_when_occluded": 12.29548168182373,
+        "raw_logit_contribution": -0.13657760620117188,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.295369148254395,
+          "total_raw_logit_contribution": -0.13646507263183594,
+          "wavelet_similarity_when_suppressed": 0.9947930574417114,
+          "wavelet_similarity_contribution": 0.0005532503128051758,
+          "wavelet_only_raw_logit_when_suppressed": 12.158902168273926,
+          "wavelet_only_raw_logit_contribution": 1.9073486328125e-06
+        }
+      },
+      {
+        "patch_id": 15,
+        "box_xyxy": [
+          135,
+          90,
+          180,
+          135
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999958276748657,
+        "confidence_contribution": -1.0728836059570312e-06,
+        "raw_logit_when_occluded": 12.395519256591797,
+        "raw_logit_contribution": -0.23661518096923828,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.0516939163208,
+          "total_raw_logit_contribution": 0.10721015930175781,
+          "wavelet_similarity_when_suppressed": 0.9955430030822754,
+          "wavelet_similarity_contribution": -0.00019669532775878906,
+          "wavelet_only_raw_logit_when_suppressed": 12.158893585205078,
+          "wavelet_only_raw_logit_contribution": 1.049041748046875e-05
+        }
+      },
+      {
+        "patch_id": 16,
+        "box_xyxy": [
+          180,
+          90,
+          225,
+          135
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999985694885254,
+        "confidence_contribution": -3.814697265625e-06,
+        "raw_logit_when_occluded": 13.466690063476562,
+        "raw_logit_contribution": -1.307785987854004,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 11.97904109954834,
+          "total_raw_logit_contribution": 0.17986297607421875,
+          "wavelet_similarity_when_suppressed": 0.9948124885559082,
+          "wavelet_similarity_contribution": 0.0005338191986083984,
+          "wavelet_only_raw_logit_when_suppressed": 12.158904075622559,
+          "wavelet_only_raw_logit_contribution": 0.0
+        }
+      },
+      {
+        "patch_id": 17,
+        "box_xyxy": [
+          225,
+          90,
+          270,
+          135
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999983310699463,
+        "confidence_contribution": -3.5762786865234375e-06,
+        "raw_logit_when_occluded": 13.291451454162598,
+        "raw_logit_contribution": -1.132547378540039,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.043752670288086,
+          "total_raw_logit_contribution": 0.11515140533447266,
+          "wavelet_similarity_when_suppressed": 0.995485246181488,
+          "wavelet_similarity_contribution": -0.00013893842697143555,
+          "wavelet_only_raw_logit_when_suppressed": 12.158895492553711,
+          "wavelet_only_raw_logit_contribution": 8.58306884765625e-06
+        }
+      },
+      {
+        "patch_id": 18,
+        "box_xyxy": [
+          0,
+          135,
+          45,
+          180
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999977350234985,
+        "confidence_contribution": -2.9802322387695312e-06,
+        "raw_logit_when_occluded": 12.974668502807617,
+        "raw_logit_contribution": -0.8157644271850586,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.246672630310059,
+          "total_raw_logit_contribution": -0.0877685546875,
+          "wavelet_similarity_when_suppressed": 0.9958680868148804,
+          "wavelet_similarity_contribution": -0.0005217790603637695,
+          "wavelet_only_raw_logit_when_suppressed": 12.15890121459961,
+          "wavelet_only_raw_logit_contribution": 2.86102294921875e-06
+        }
+      },
+      {
+        "patch_id": 19,
+        "box_xyxy": [
+          45,
+          135,
+          90,
+          180
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999911785125732,
+        "confidence_contribution": 3.5762786865234375e-06,
+        "raw_logit_when_occluded": 11.642546653747559,
+        "raw_logit_contribution": 0.516357421875,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 11.504426956176758,
+          "total_raw_logit_contribution": 0.6544771194458008,
+          "wavelet_similarity_when_suppressed": 0.9951668381690979,
+          "wavelet_similarity_contribution": 0.00017946958541870117,
+          "wavelet_only_raw_logit_when_suppressed": 12.158903121948242,
+          "wavelet_only_raw_logit_contribution": 9.5367431640625e-07
+        }
+      },
+      {
+        "patch_id": 20,
+        "box_xyxy": [
+          90,
+          135,
+          135,
+          180
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999945163726807,
+        "confidence_contribution": 2.384185791015625e-07,
+        "raw_logit_when_occluded": 12.108155250549316,
+        "raw_logit_contribution": 0.05074882507324219,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 11.951805114746094,
+          "total_raw_logit_contribution": 0.20709896087646484,
+          "wavelet_similarity_when_suppressed": 0.9949176907539368,
+          "wavelet_similarity_contribution": 0.000428617000579834,
+          "wavelet_only_raw_logit_when_suppressed": 12.158903121948242,
+          "wavelet_only_raw_logit_contribution": 9.5367431640625e-07
+        }
+      },
+      {
+        "patch_id": 21,
+        "box_xyxy": [
+          135,
+          135,
+          180,
+          180
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999958276748657,
+        "confidence_contribution": -1.0728836059570312e-06,
+        "raw_logit_when_occluded": 12.384869575500488,
+        "raw_logit_contribution": -0.2259654998779297,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.056622505187988,
+          "total_raw_logit_contribution": 0.10228157043457031,
+          "wavelet_similarity_when_suppressed": 0.9953498840332031,
+          "wavelet_similarity_contribution": -3.5762786865234375e-06,
+          "wavelet_only_raw_logit_when_suppressed": 12.158897399902344,
+          "wavelet_only_raw_logit_contribution": 6.67572021484375e-06
+        }
+      },
+      {
+        "patch_id": 22,
+        "box_xyxy": [
+          180,
+          135,
+          225,
+          180
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999973773956299,
+        "confidence_contribution": -2.6226043701171875e-06,
+        "raw_logit_when_occluded": 12.8595609664917,
+        "raw_logit_contribution": -0.7006568908691406,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.822625160217285,
+          "total_raw_logit_contribution": -0.6637210845947266,
+          "wavelet_similarity_when_suppressed": 0.9947845935821533,
+          "wavelet_similarity_contribution": 0.0005617141723632812,
+          "wavelet_only_raw_logit_when_suppressed": 12.158902168273926,
+          "wavelet_only_raw_logit_contribution": 1.9073486328125e-06
+        }
+      },
+      {
+        "patch_id": 23,
+        "box_xyxy": [
+          225,
+          135,
+          270,
+          180
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999970197677612,
+        "confidence_contribution": -2.2649765014648438e-06,
+        "raw_logit_when_occluded": 12.711684226989746,
+        "raw_logit_contribution": -0.5527801513671875,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.500250816345215,
+          "total_raw_logit_contribution": -0.34134674072265625,
+          "wavelet_similarity_when_suppressed": 0.9935731291770935,
+          "wavelet_similarity_contribution": 0.0017731785774230957,
+          "wavelet_only_raw_logit_when_suppressed": 12.158906936645508,
+          "wavelet_only_raw_logit_contribution": -2.86102294921875e-06
+        }
+      },
+      {
+        "patch_id": 24,
+        "box_xyxy": [
+          0,
+          180,
+          45,
+          225
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999963045120239,
+        "confidence_contribution": -1.5497207641601562e-06,
+        "raw_logit_when_occluded": 12.50172233581543,
+        "raw_logit_contribution": -0.3428182601928711,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.01438045501709,
+          "total_raw_logit_contribution": 0.14452362060546875,
+          "wavelet_similarity_when_suppressed": 0.9957388639450073,
+          "wavelet_similarity_contribution": -0.00039255619049072266,
+          "wavelet_only_raw_logit_when_suppressed": 12.15890121459961,
+          "wavelet_only_raw_logit_contribution": 2.86102294921875e-06
+        }
+      },
+      {
+        "patch_id": 25,
+        "box_xyxy": [
+          45,
+          180,
+          90,
+          225
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999934434890747,
+        "confidence_contribution": 1.3113021850585938e-06,
+        "raw_logit_when_occluded": 11.9304780960083,
+        "raw_logit_contribution": 0.2284259796142578,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 11.883942604064941,
+          "total_raw_logit_contribution": 0.2749614715576172,
+          "wavelet_similarity_when_suppressed": 0.9957687258720398,
+          "wavelet_similarity_contribution": -0.00042241811752319336,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 26,
+        "box_xyxy": [
+          90,
+          180,
+          135,
+          225
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999940395355225,
+        "confidence_contribution": 7.152557373046875e-07,
+        "raw_logit_when_occluded": 12.03952407836914,
+        "raw_logit_contribution": 0.11937999725341797,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 11.45549488067627,
+          "total_raw_logit_contribution": 0.7034091949462891,
+          "wavelet_similarity_when_suppressed": 0.9955233335494995,
+          "wavelet_similarity_contribution": -0.00017702579498291016,
+          "wavelet_only_raw_logit_when_suppressed": 12.158893585205078,
+          "wavelet_only_raw_logit_contribution": 1.049041748046875e-05
+        }
+      },
+      {
+        "patch_id": 27,
+        "box_xyxy": [
+          135,
+          180,
+          180,
+          225
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999951124191284,
+        "confidence_contribution": -3.5762786865234375e-07,
+        "raw_logit_when_occluded": 12.237639427185059,
+        "raw_logit_contribution": -0.0787353515625,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.831686019897461,
+          "total_raw_logit_contribution": -0.6727819442749023,
+          "wavelet_similarity_when_suppressed": 0.9952103495597839,
+          "wavelet_similarity_contribution": 0.00013595819473266602,
+          "wavelet_only_raw_logit_when_suppressed": 12.158903121948242,
+          "wavelet_only_raw_logit_contribution": 9.5367431640625e-07
+        }
+      },
+      {
+        "patch_id": 28,
+        "box_xyxy": [
+          180,
+          180,
+          225,
+          225
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999911785125732,
+        "confidence_contribution": 3.5762786865234375e-06,
+        "raw_logit_when_occluded": 11.639228820800781,
+        "raw_logit_contribution": 0.5196752548217773,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 11.689135551452637,
+          "total_raw_logit_contribution": 0.4697685241699219,
+          "wavelet_similarity_when_suppressed": 0.9957664012908936,
+          "wavelet_similarity_contribution": -0.0004200935363769531,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 29,
+        "box_xyxy": [
+          225,
+          180,
+          270,
+          225
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999946355819702,
+        "confidence_contribution": 1.1920928955078125e-07,
+        "raw_logit_when_occluded": 12.128592491149902,
+        "raw_logit_contribution": 0.03031158447265625,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.184595108032227,
+          "total_raw_logit_contribution": -0.02569103240966797,
+          "wavelet_similarity_when_suppressed": 0.9938566088676453,
+          "wavelet_similarity_contribution": 0.0014896988868713379,
+          "wavelet_only_raw_logit_when_suppressed": 12.158909797668457,
+          "wavelet_only_raw_logit_contribution": -5.7220458984375e-06
+        }
+      },
+      {
+        "patch_id": 30,
+        "box_xyxy": [
+          0,
+          225,
+          45,
+          270
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999935626983643,
+        "confidence_contribution": 1.1920928955078125e-06,
+        "raw_logit_when_occluded": 11.951476097106934,
+        "raw_logit_contribution": 0.207427978515625,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 11.863475799560547,
+          "total_raw_logit_contribution": 0.2954282760620117,
+          "wavelet_similarity_when_suppressed": 0.995606541633606,
+          "wavelet_similarity_contribution": -0.00026023387908935547,
+          "wavelet_only_raw_logit_when_suppressed": 12.158896446228027,
+          "wavelet_only_raw_logit_contribution": 7.62939453125e-06
+        }
+      },
+      {
+        "patch_id": 31,
+        "box_xyxy": [
+          45,
+          225,
+          90,
+          270
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999933242797852,
+        "confidence_contribution": 1.430511474609375e-06,
+        "raw_logit_when_occluded": 11.919022560119629,
+        "raw_logit_contribution": 0.2398815155029297,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.268586158752441,
+          "total_raw_logit_contribution": -0.10968208312988281,
+          "wavelet_similarity_when_suppressed": 0.9959951043128967,
+          "wavelet_similarity_contribution": -0.000648796558380127,
+          "wavelet_only_raw_logit_when_suppressed": 12.158902168273926,
+          "wavelet_only_raw_logit_contribution": 1.9073486328125e-06
+        }
+      },
+      {
+        "patch_id": 32,
+        "box_xyxy": [
+          90,
+          225,
+          135,
+          270
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.999996542930603,
+        "confidence_contribution": -1.7881393432617188e-06,
+        "raw_logit_when_occluded": 12.587807655334473,
+        "raw_logit_contribution": -0.42890357971191406,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.466297149658203,
+          "total_raw_logit_contribution": -0.30739307403564453,
+          "wavelet_similarity_when_suppressed": 0.9950593709945679,
+          "wavelet_similarity_contribution": 0.00028693675994873047,
+          "wavelet_only_raw_logit_when_suppressed": 12.158903121948242,
+          "wavelet_only_raw_logit_contribution": 9.5367431640625e-07
+        }
+      },
+      {
+        "patch_id": 33,
+        "box_xyxy": [
+          135,
+          225,
+          180,
+          270
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999966621398926,
+        "confidence_contribution": -1.9073486328125e-06,
+        "raw_logit_when_occluded": 12.617321014404297,
+        "raw_logit_contribution": -0.4584169387817383,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.126404762268066,
+          "total_raw_logit_contribution": 0.03249931335449219,
+          "wavelet_similarity_when_suppressed": 0.9950922727584839,
+          "wavelet_similarity_contribution": 0.00025403499603271484,
+          "wavelet_only_raw_logit_when_suppressed": 12.158903121948242,
+          "wavelet_only_raw_logit_contribution": 9.5367431640625e-07
+        }
+      },
+      {
+        "patch_id": 34,
+        "box_xyxy": [
+          180,
+          225,
+          225,
+          270
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999934434890747,
+        "confidence_contribution": 1.3113021850585938e-06,
+        "raw_logit_when_occluded": 11.93311882019043,
+        "raw_logit_contribution": 0.2257852554321289,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.244060516357422,
+          "total_raw_logit_contribution": -0.08515644073486328,
+          "wavelet_similarity_when_suppressed": 0.9952088594436646,
+          "wavelet_similarity_contribution": 0.00013744831085205078,
+          "wavelet_only_raw_logit_when_suppressed": 12.158903121948242,
+          "wavelet_only_raw_logit_contribution": 9.5367431640625e-07
+        }
+      },
+      {
+        "patch_id": 35,
+        "box_xyxy": [
+          225,
+          225,
+          270,
+          270
+        ],
+        "stage": "coarse",
+        "parent_patch_id": null,
+        "probability_when_occluded": 0.9999983310699463,
+        "confidence_contribution": -3.5762786865234375e-06,
+        "raw_logit_when_occluded": 13.30374813079834,
+        "raw_logit_contribution": -1.1448440551757812,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 11.886065483093262,
+          "total_raw_logit_contribution": 0.2728385925292969,
+          "wavelet_similarity_when_suppressed": 0.9938632249832153,
+          "wavelet_similarity_contribution": 0.0014830827713012695,
+          "wavelet_only_raw_logit_when_suppressed": 12.158909797668457,
+          "wavelet_only_raw_logit_contribution": -5.7220458984375e-06
+        }
+      },
+      {
+        "patch_id": 36,
+        "box_xyxy": [
+          180,
+          90,
+          195,
+          105
+        ],
+        "stage": "refined",
+        "parent_patch_id": 16,
+        "probability_when_occluded": 0.9999959468841553,
+        "confidence_contribution": -1.1920928955078125e-06,
+        "raw_logit_when_occluded": 12.408122062683105,
+        "raw_logit_contribution": -0.24921798706054688,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.215544700622559,
+          "total_raw_logit_contribution": -0.056640625,
+          "wavelet_similarity_when_suppressed": 0.9952625632286072,
+          "wavelet_similarity_contribution": 8.374452590942383e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158900260925293,
+          "wavelet_only_raw_logit_contribution": 3.814697265625e-06
+        }
+      },
+      {
+        "patch_id": 37,
+        "box_xyxy": [
+          195,
+          90,
+          210,
+          105
+        ],
+        "stage": "refined",
+        "parent_patch_id": 16,
+        "probability_when_occluded": 0.9999959468841553,
+        "confidence_contribution": -1.1920928955078125e-06,
+        "raw_logit_when_occluded": 12.41650676727295,
+        "raw_logit_contribution": -0.2576026916503906,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.103968620300293,
+          "total_raw_logit_contribution": 0.054935455322265625,
+          "wavelet_similarity_when_suppressed": 0.9952227473258972,
+          "wavelet_similarity_contribution": 0.00012356042861938477,
+          "wavelet_only_raw_logit_when_suppressed": 12.15890121459961,
+          "wavelet_only_raw_logit_contribution": 2.86102294921875e-06
+        }
+      },
+      {
+        "patch_id": 38,
+        "box_xyxy": [
+          210,
+          90,
+          225,
+          105
+        ],
+        "stage": "refined",
+        "parent_patch_id": 16,
+        "probability_when_occluded": 0.9999957084655762,
+        "confidence_contribution": -9.5367431640625e-07,
+        "raw_logit_when_occluded": 12.346024513244629,
+        "raw_logit_contribution": -0.1871204376220703,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.176069259643555,
+          "total_raw_logit_contribution": -0.017165184020996094,
+          "wavelet_similarity_when_suppressed": 0.9954339861869812,
+          "wavelet_similarity_contribution": -8.767843246459961e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 39,
+        "box_xyxy": [
+          180,
+          105,
+          195,
+          120
+        ],
+        "stage": "refined",
+        "parent_patch_id": 16,
+        "probability_when_occluded": 0.999996542930603,
+        "confidence_contribution": -1.7881393432617188e-06,
+        "raw_logit_when_occluded": 12.590047836303711,
+        "raw_logit_contribution": -0.43114376068115234,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.226225852966309,
+          "total_raw_logit_contribution": -0.06732177734375,
+          "wavelet_similarity_when_suppressed": 0.9952304363250732,
+          "wavelet_similarity_contribution": 0.00011587142944335938,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 40,
+        "box_xyxy": [
+          195,
+          105,
+          210,
+          120
+        ],
+        "stage": "refined",
+        "parent_patch_id": 16,
+        "probability_when_occluded": 0.9999953508377075,
+        "confidence_contribution": -5.960464477539062e-07,
+        "raw_logit_when_occluded": 12.270038604736328,
+        "raw_logit_contribution": -0.11113452911376953,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.2030611038208,
+          "total_raw_logit_contribution": -0.04415702819824219,
+          "wavelet_similarity_when_suppressed": 0.9953411817550659,
+          "wavelet_similarity_contribution": 5.125999450683594e-06,
+          "wavelet_only_raw_logit_when_suppressed": 12.158897399902344,
+          "wavelet_only_raw_logit_contribution": 6.67572021484375e-06
+        }
+      },
+      {
+        "patch_id": 41,
+        "box_xyxy": [
+          210,
+          105,
+          225,
+          120
+        ],
+        "stage": "refined",
+        "parent_patch_id": 16,
+        "probability_when_occluded": 0.9999945163726807,
+        "confidence_contribution": 2.384185791015625e-07,
+        "raw_logit_when_occluded": 12.11507797241211,
+        "raw_logit_contribution": 0.04382610321044922,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.171792984008789,
+          "total_raw_logit_contribution": -0.012888908386230469,
+          "wavelet_similarity_when_suppressed": 0.9951409697532654,
+          "wavelet_similarity_contribution": 0.0002053380012512207,
+          "wavelet_only_raw_logit_when_suppressed": 12.158905029296875,
+          "wavelet_only_raw_logit_contribution": -9.5367431640625e-07
+        }
+      },
+      {
+        "patch_id": 42,
+        "box_xyxy": [
+          180,
+          120,
+          195,
+          135
+        ],
+        "stage": "refined",
+        "parent_patch_id": 16,
+        "probability_when_occluded": 0.9999945163726807,
+        "confidence_contribution": 2.384185791015625e-07,
+        "raw_logit_when_occluded": 12.120509147644043,
+        "raw_logit_contribution": 0.038394927978515625,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.077836036682129,
+          "total_raw_logit_contribution": 0.08106803894042969,
+          "wavelet_similarity_when_suppressed": 0.9953517913818359,
+          "wavelet_similarity_contribution": -5.4836273193359375e-06,
+          "wavelet_only_raw_logit_when_suppressed": 12.158897399902344,
+          "wavelet_only_raw_logit_contribution": 6.67572021484375e-06
+        }
+      },
+      {
+        "patch_id": 43,
+        "box_xyxy": [
+          195,
+          120,
+          210,
+          135
+        ],
+        "stage": "refined",
+        "parent_patch_id": 16,
+        "probability_when_occluded": 0.9999967813491821,
+        "confidence_contribution": -2.0265579223632812e-06,
+        "raw_logit_when_occluded": 12.647339820861816,
+        "raw_logit_contribution": -0.4884357452392578,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.122624397277832,
+          "total_raw_logit_contribution": 0.03627967834472656,
+          "wavelet_similarity_when_suppressed": 0.9952868223190308,
+          "wavelet_similarity_contribution": 5.9485435485839844e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 44,
+        "box_xyxy": [
+          210,
+          120,
+          225,
+          135
+        ],
+        "stage": "refined",
+        "parent_patch_id": 16,
+        "probability_when_occluded": 0.9999970197677612,
+        "confidence_contribution": -2.2649765014648438e-06,
+        "raw_logit_when_occluded": 12.712199211120605,
+        "raw_logit_contribution": -0.5532951354980469,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.200304985046387,
+          "total_raw_logit_contribution": -0.041400909423828125,
+          "wavelet_similarity_when_suppressed": 0.9950949549674988,
+          "wavelet_similarity_contribution": 0.00025135278701782227,
+          "wavelet_only_raw_logit_when_suppressed": 12.158903121948242,
+          "wavelet_only_raw_logit_contribution": 9.5367431640625e-07
+        }
+      },
+      {
+        "patch_id": 45,
+        "box_xyxy": [
+          225,
+          225,
+          240,
+          240
+        ],
+        "stage": "refined",
+        "parent_patch_id": 35,
+        "probability_when_occluded": 0.999995231628418,
+        "confidence_contribution": -4.76837158203125e-07,
+        "raw_logit_when_occluded": 12.248048782348633,
+        "raw_logit_contribution": -0.08914470672607422,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.124042510986328,
+          "total_raw_logit_contribution": 0.03486156463623047,
+          "wavelet_similarity_when_suppressed": 0.9952800273895264,
+          "wavelet_similarity_contribution": 6.628036499023438e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 46,
+        "box_xyxy": [
+          240,
+          225,
+          255,
+          240
+        ],
+        "stage": "refined",
+        "parent_patch_id": 35,
+        "probability_when_occluded": 0.9999953508377075,
+        "confidence_contribution": -5.960464477539062e-07,
+        "raw_logit_when_occluded": 12.29072093963623,
+        "raw_logit_contribution": -0.13181686401367188,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.089475631713867,
+          "total_raw_logit_contribution": 0.0694284439086914,
+          "wavelet_similarity_when_suppressed": 0.995111882686615,
+          "wavelet_similarity_contribution": 0.00023442506790161133,
+          "wavelet_only_raw_logit_when_suppressed": 12.158904075622559,
+          "wavelet_only_raw_logit_contribution": 0.0
+        }
+      },
+      {
+        "patch_id": 47,
+        "box_xyxy": [
+          255,
+          225,
+          270,
+          240
+        ],
+        "stage": "refined",
+        "parent_patch_id": 35,
+        "probability_when_occluded": 0.9999942779541016,
+        "confidence_contribution": 4.76837158203125e-07,
+        "raw_logit_when_occluded": 12.065494537353516,
+        "raw_logit_contribution": 0.09340953826904297,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.206432342529297,
+          "total_raw_logit_contribution": -0.04752826690673828,
+          "wavelet_similarity_when_suppressed": 0.9951536655426025,
+          "wavelet_similarity_contribution": 0.0001926422119140625,
+          "wavelet_only_raw_logit_when_suppressed": 12.158904075622559,
+          "wavelet_only_raw_logit_contribution": 0.0
+        }
+      },
+      {
+        "patch_id": 48,
+        "box_xyxy": [
+          225,
+          240,
+          240,
+          255
+        ],
+        "stage": "refined",
+        "parent_patch_id": 35,
+        "probability_when_occluded": 0.999994158744812,
+        "confidence_contribution": 5.960464477539062e-07,
+        "raw_logit_when_occluded": 12.0498628616333,
+        "raw_logit_contribution": 0.10904121398925781,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 11.958932876586914,
+          "total_raw_logit_contribution": 0.19997119903564453,
+          "wavelet_similarity_when_suppressed": 0.995128870010376,
+          "wavelet_similarity_contribution": 0.000217437744140625,
+          "wavelet_only_raw_logit_when_suppressed": 12.158904075622559,
+          "wavelet_only_raw_logit_contribution": 0.0
+        }
+      },
+      {
+        "patch_id": 49,
+        "box_xyxy": [
+          240,
+          240,
+          255,
+          255
+        ],
+        "stage": "refined",
+        "parent_patch_id": 35,
+        "probability_when_occluded": 0.9999949932098389,
+        "confidence_contribution": -2.384185791015625e-07,
+        "raw_logit_when_occluded": 12.199984550476074,
+        "raw_logit_contribution": -0.041080474853515625,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.174188613891602,
+          "total_raw_logit_contribution": -0.015284538269042969,
+          "wavelet_similarity_when_suppressed": 0.9952826499938965,
+          "wavelet_similarity_contribution": 6.365776062011719e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 50,
+        "box_xyxy": [
+          255,
+          240,
+          270,
+          255
+        ],
+        "stage": "refined",
+        "parent_patch_id": 35,
+        "probability_when_occluded": 0.9999964237213135,
+        "confidence_contribution": -1.6689300537109375e-06,
+        "raw_logit_when_occluded": 12.534269332885742,
+        "raw_logit_contribution": -0.3753652572631836,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.135038375854492,
+          "total_raw_logit_contribution": 0.023865699768066406,
+          "wavelet_similarity_when_suppressed": 0.9953773021697998,
+          "wavelet_similarity_contribution": -3.0994415283203125e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 51,
+        "box_xyxy": [
+          225,
+          255,
+          240,
+          270
+        ],
+        "stage": "refined",
+        "parent_patch_id": 35,
+        "probability_when_occluded": 0.9999933242797852,
+        "confidence_contribution": 1.430511474609375e-06,
+        "raw_logit_when_occluded": 11.910290718078613,
+        "raw_logit_contribution": 0.2486133575439453,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.186302185058594,
+          "total_raw_logit_contribution": -0.027398109436035156,
+          "wavelet_similarity_when_suppressed": 0.9953824877738953,
+          "wavelet_similarity_contribution": -3.618001937866211e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 52,
+        "box_xyxy": [
+          240,
+          255,
+          255,
+          270
+        ],
+        "stage": "refined",
+        "parent_patch_id": 35,
+        "probability_when_occluded": 0.9999947547912598,
+        "confidence_contribution": 0.0,
+        "raw_logit_when_occluded": 12.158698081970215,
+        "raw_logit_contribution": 0.00020599365234375,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.116561889648438,
+          "total_raw_logit_contribution": 0.042342185974121094,
+          "wavelet_similarity_when_suppressed": 0.9955226182937622,
+          "wavelet_similarity_contribution": -0.00017631053924560547,
+          "wavelet_only_raw_logit_when_suppressed": 12.158893585205078,
+          "wavelet_only_raw_logit_contribution": 1.049041748046875e-05
+        }
+      },
+      {
+        "patch_id": 53,
+        "box_xyxy": [
+          255,
+          255,
+          270,
+          270
+        ],
+        "stage": "refined",
+        "parent_patch_id": 35,
+        "probability_when_occluded": 0.9999957084655762,
+        "confidence_contribution": -9.5367431640625e-07,
+        "raw_logit_when_occluded": 12.3464994430542,
+        "raw_logit_contribution": -0.18759536743164062,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.256800651550293,
+          "total_raw_logit_contribution": -0.09789657592773438,
+          "wavelet_similarity_when_suppressed": 0.9957463145256042,
+          "wavelet_similarity_contribution": -0.0004000067710876465,
+          "wavelet_only_raw_logit_when_suppressed": 12.158900260925293,
+          "wavelet_only_raw_logit_contribution": 3.814697265625e-06
+        }
+      },
+      {
+        "patch_id": 54,
+        "box_xyxy": [
+          225,
+          90,
+          240,
+          105
+        ],
+        "stage": "refined",
+        "parent_patch_id": 17,
+        "probability_when_occluded": 0.9999963045120239,
+        "confidence_contribution": -1.5497207641601562e-06,
+        "raw_logit_when_occluded": 12.492889404296875,
+        "raw_logit_contribution": -0.3339853286743164,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.177511215209961,
+          "total_raw_logit_contribution": -0.018607139587402344,
+          "wavelet_similarity_when_suppressed": 0.9952723383903503,
+          "wavelet_similarity_contribution": 7.396936416625977e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 55,
+        "box_xyxy": [
+          240,
+          90,
+          255,
+          105
+        ],
+        "stage": "refined",
+        "parent_patch_id": 17,
+        "probability_when_occluded": 0.9999949932098389,
+        "confidence_contribution": -2.384185791015625e-07,
+        "raw_logit_when_occluded": 12.203380584716797,
+        "raw_logit_contribution": -0.04447650909423828,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.189496994018555,
+          "total_raw_logit_contribution": -0.030592918395996094,
+          "wavelet_similarity_when_suppressed": 0.9953898787498474,
+          "wavelet_similarity_contribution": -4.357099533081055e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 56,
+        "box_xyxy": [
+          255,
+          90,
+          270,
+          105
+        ],
+        "stage": "refined",
+        "parent_patch_id": 17,
+        "probability_when_occluded": 0.9999947547912598,
+        "confidence_contribution": 0.0,
+        "raw_logit_when_occluded": 12.165861129760742,
+        "raw_logit_contribution": -0.006957054138183594,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.228156089782715,
+          "total_raw_logit_contribution": -0.06925201416015625,
+          "wavelet_similarity_when_suppressed": 0.995336651802063,
+          "wavelet_similarity_contribution": 9.655952453613281e-06,
+          "wavelet_only_raw_logit_when_suppressed": 12.15889835357666,
+          "wavelet_only_raw_logit_contribution": 5.7220458984375e-06
+        }
+      },
+      {
+        "patch_id": 57,
+        "box_xyxy": [
+          225,
+          105,
+          240,
+          120
+        ],
+        "stage": "refined",
+        "parent_patch_id": 17,
+        "probability_when_occluded": 0.9999948740005493,
+        "confidence_contribution": -1.1920928955078125e-07,
+        "raw_logit_when_occluded": 12.177424430847168,
+        "raw_logit_contribution": -0.018520355224609375,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.199613571166992,
+          "total_raw_logit_contribution": -0.040709495544433594,
+          "wavelet_similarity_when_suppressed": 0.9953809976577759,
+          "wavelet_similarity_contribution": -3.4689903259277344e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 58,
+        "box_xyxy": [
+          240,
+          105,
+          255,
+          120
+        ],
+        "stage": "refined",
+        "parent_patch_id": 17,
+        "probability_when_occluded": 0.999994158744812,
+        "confidence_contribution": 5.960464477539062e-07,
+        "raw_logit_when_occluded": 12.054448127746582,
+        "raw_logit_contribution": 0.10445594787597656,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.131353378295898,
+          "total_raw_logit_contribution": 0.027550697326660156,
+          "wavelet_similarity_when_suppressed": 0.9954424500465393,
+          "wavelet_similarity_contribution": -9.614229202270508e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.15889835357666,
+          "wavelet_only_raw_logit_contribution": 5.7220458984375e-06
+        }
+      },
+      {
+        "patch_id": 59,
+        "box_xyxy": [
+          255,
+          105,
+          270,
+          120
+        ],
+        "stage": "refined",
+        "parent_patch_id": 17,
+        "probability_when_occluded": 0.9999947547912598,
+        "confidence_contribution": 0.0,
+        "raw_logit_when_occluded": 12.164010047912598,
+        "raw_logit_contribution": -0.0051059722900390625,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.119718551635742,
+          "total_raw_logit_contribution": 0.039185523986816406,
+          "wavelet_similarity_when_suppressed": 0.9954361915588379,
+          "wavelet_similarity_contribution": -8.988380432128906e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 60,
+        "box_xyxy": [
+          225,
+          120,
+          240,
+          135
+        ],
+        "stage": "refined",
+        "parent_patch_id": 17,
+        "probability_when_occluded": 0.9999964237213135,
+        "confidence_contribution": -1.6689300537109375e-06,
+        "raw_logit_when_occluded": 12.55246639251709,
+        "raw_logit_contribution": -0.39356231689453125,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.101631164550781,
+          "total_raw_logit_contribution": 0.057272911071777344,
+          "wavelet_similarity_when_suppressed": 0.9952194690704346,
+          "wavelet_similarity_contribution": 0.00012683868408203125,
+          "wavelet_only_raw_logit_when_suppressed": 12.158902168273926,
+          "wavelet_only_raw_logit_contribution": 1.9073486328125e-06
+        }
+      },
+      {
+        "patch_id": 61,
+        "box_xyxy": [
+          240,
+          120,
+          255,
+          135
+        ],
+        "stage": "refined",
+        "parent_patch_id": 17,
+        "probability_when_occluded": 0.9999948740005493,
+        "confidence_contribution": -1.1920928955078125e-07,
+        "raw_logit_when_occluded": 12.186822891235352,
+        "raw_logit_contribution": -0.02791881561279297,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.111664772033691,
+          "total_raw_logit_contribution": 0.04723930358886719,
+          "wavelet_similarity_when_suppressed": 0.9951470494270325,
+          "wavelet_similarity_contribution": 0.00019925832748413086,
+          "wavelet_only_raw_logit_when_suppressed": 12.158904075622559,
+          "wavelet_only_raw_logit_contribution": 0.0
+        }
+      },
+      {
+        "patch_id": 62,
+        "box_xyxy": [
+          255,
+          120,
+          270,
+          135
+        ],
+        "stage": "refined",
+        "parent_patch_id": 17,
+        "probability_when_occluded": 0.999995231628418,
+        "confidence_contribution": -4.76837158203125e-07,
+        "raw_logit_when_occluded": 12.256107330322266,
+        "raw_logit_contribution": -0.09720325469970703,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.131966590881348,
+          "total_raw_logit_contribution": 0.026937484741210938,
+          "wavelet_similarity_when_suppressed": 0.9953137636184692,
+          "wavelet_similarity_contribution": 3.254413604736328e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158900260925293,
+          "wavelet_only_raw_logit_contribution": 3.814697265625e-06
+        }
+      },
+      {
+        "patch_id": 63,
+        "box_xyxy": [
+          0,
+          0,
+          15,
+          15
+        ],
+        "stage": "refined",
+        "parent_patch_id": 0,
+        "probability_when_occluded": 0.9999947547912598,
+        "confidence_contribution": 0.0,
+        "raw_logit_when_occluded": 12.150043487548828,
+        "raw_logit_contribution": 0.008860588073730469,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.160032272338867,
+          "total_raw_logit_contribution": -0.0011281967163085938,
+          "wavelet_similarity_when_suppressed": 0.9954180717468262,
+          "wavelet_similarity_contribution": -7.176399230957031e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 64,
+        "box_xyxy": [
+          15,
+          0,
+          30,
+          15
+        ],
+        "stage": "refined",
+        "parent_patch_id": 0,
+        "probability_when_occluded": 0.999994158744812,
+        "confidence_contribution": 5.960464477539062e-07,
+        "raw_logit_when_occluded": 12.048543930053711,
+        "raw_logit_contribution": 0.11036014556884766,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.046424865722656,
+          "total_raw_logit_contribution": 0.11247920989990234,
+          "wavelet_similarity_when_suppressed": 0.9954087734222412,
+          "wavelet_similarity_contribution": -6.246566772460938e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 65,
+        "box_xyxy": [
+          30,
+          0,
+          45,
+          15
+        ],
+        "stage": "refined",
+        "parent_patch_id": 0,
+        "probability_when_occluded": 0.9999948740005493,
+        "confidence_contribution": -1.1920928955078125e-07,
+        "raw_logit_when_occluded": 12.17273998260498,
+        "raw_logit_contribution": -0.013835906982421875,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.160351753234863,
+          "total_raw_logit_contribution": -0.0014476776123046875,
+          "wavelet_similarity_when_suppressed": 0.9952759742736816,
+          "wavelet_similarity_contribution": 7.033348083496094e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158900260925293,
+          "wavelet_only_raw_logit_contribution": 3.814697265625e-06
+        }
+      },
+      {
+        "patch_id": 66,
+        "box_xyxy": [
+          0,
+          15,
+          15,
+          30
+        ],
+        "stage": "refined",
+        "parent_patch_id": 0,
+        "probability_when_occluded": 0.9999960660934448,
+        "confidence_contribution": -1.3113021850585938e-06,
+        "raw_logit_when_occluded": 12.460698127746582,
+        "raw_logit_contribution": -0.30179405212402344,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.131446838378906,
+          "total_raw_logit_contribution": 0.027457237243652344,
+          "wavelet_similarity_when_suppressed": 0.9954407215118408,
+          "wavelet_similarity_contribution": -9.441375732421875e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158897399902344,
+          "wavelet_only_raw_logit_contribution": 6.67572021484375e-06
+        }
+      },
+      {
+        "patch_id": 67,
+        "box_xyxy": [
+          15,
+          15,
+          30,
+          30
+        ],
+        "stage": "refined",
+        "parent_patch_id": 0,
+        "probability_when_occluded": 0.999992847442627,
+        "confidence_contribution": 1.9073486328125e-06,
+        "raw_logit_when_occluded": 11.854564666748047,
+        "raw_logit_contribution": 0.3043394088745117,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.112834930419922,
+          "total_raw_logit_contribution": 0.04606914520263672,
+          "wavelet_similarity_when_suppressed": 0.9951238036155701,
+          "wavelet_similarity_contribution": 0.0002225041389465332,
+          "wavelet_only_raw_logit_when_suppressed": 12.158904075622559,
+          "wavelet_only_raw_logit_contribution": 0.0
+        }
+      },
+      {
+        "patch_id": 68,
+        "box_xyxy": [
+          30,
+          15,
+          45,
+          30
+        ],
+        "stage": "refined",
+        "parent_patch_id": 0,
+        "probability_when_occluded": 0.9999951124191284,
+        "confidence_contribution": -3.5762786865234375e-07,
+        "raw_logit_when_occluded": 12.223188400268555,
+        "raw_logit_contribution": -0.0642843246459961,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.166266441345215,
+          "total_raw_logit_contribution": -0.00736236572265625,
+          "wavelet_similarity_when_suppressed": 0.9953482151031494,
+          "wavelet_similarity_contribution": -1.9073486328125e-06,
+          "wavelet_only_raw_logit_when_suppressed": 12.158897399902344,
+          "wavelet_only_raw_logit_contribution": 6.67572021484375e-06
+        }
+      },
+      {
+        "patch_id": 69,
+        "box_xyxy": [
+          0,
+          30,
+          15,
+          45
+        ],
+        "stage": "refined",
+        "parent_patch_id": 0,
+        "probability_when_occluded": 0.9999949932098389,
+        "confidence_contribution": -2.384185791015625e-07,
+        "raw_logit_when_occluded": 12.208174705505371,
+        "raw_logit_contribution": -0.0492706298828125,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.149885177612305,
+          "total_raw_logit_contribution": 0.009018898010253906,
+          "wavelet_similarity_when_suppressed": 0.9954947233200073,
+          "wavelet_similarity_contribution": -0.00014841556549072266,
+          "wavelet_only_raw_logit_when_suppressed": 12.158895492553711,
+          "wavelet_only_raw_logit_contribution": 8.58306884765625e-06
+        }
+      },
+      {
+        "patch_id": 70,
+        "box_xyxy": [
+          15,
+          30,
+          30,
+          45
+        ],
+        "stage": "refined",
+        "parent_patch_id": 0,
+        "probability_when_occluded": 0.9999942779541016,
+        "confidence_contribution": 4.76837158203125e-07,
+        "raw_logit_when_occluded": 12.07190227508545,
+        "raw_logit_contribution": 0.08700180053710938,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.028697967529297,
+          "total_raw_logit_contribution": 0.13020610809326172,
+          "wavelet_similarity_when_suppressed": 0.9954724311828613,
+          "wavelet_similarity_contribution": -0.00012612342834472656,
+          "wavelet_only_raw_logit_when_suppressed": 12.158895492553711,
+          "wavelet_only_raw_logit_contribution": 8.58306884765625e-06
+        }
+      },
+      {
+        "patch_id": 71,
+        "box_xyxy": [
+          30,
+          30,
+          45,
+          45
+        ],
+        "stage": "refined",
+        "parent_patch_id": 0,
+        "probability_when_occluded": 0.9999958276748657,
+        "confidence_contribution": -1.0728836059570312e-06,
+        "raw_logit_when_occluded": 12.385550498962402,
+        "raw_logit_contribution": -0.22664642333984375,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.016408920288086,
+          "total_raw_logit_contribution": 0.14249515533447266,
+          "wavelet_similarity_when_suppressed": 0.9953653812408447,
+          "wavelet_similarity_contribution": -1.9073486328125e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.15889835357666,
+          "wavelet_only_raw_logit_contribution": 5.7220458984375e-06
+        }
+      },
+      {
+        "patch_id": 72,
+        "box_xyxy": [
+          0,
+          135,
+          15,
+          150
+        ],
+        "stage": "refined",
+        "parent_patch_id": 18,
+        "probability_when_occluded": 0.9999940395355225,
+        "confidence_contribution": 7.152557373046875e-07,
+        "raw_logit_when_occluded": 12.0310697555542,
+        "raw_logit_contribution": 0.12783432006835938,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.135229110717773,
+          "total_raw_logit_contribution": 0.023674964904785156,
+          "wavelet_similarity_when_suppressed": 0.995734453201294,
+          "wavelet_similarity_contribution": -0.00038814544677734375,
+          "wavelet_only_raw_logit_when_suppressed": 12.158902168273926,
+          "wavelet_only_raw_logit_contribution": 1.9073486328125e-06
+        }
+      },
+      {
+        "patch_id": 73,
+        "box_xyxy": [
+          15,
+          135,
+          30,
+          150
+        ],
+        "stage": "refined",
+        "parent_patch_id": 18,
+        "probability_when_occluded": 0.9999948740005493,
+        "confidence_contribution": -1.1920928955078125e-07,
+        "raw_logit_when_occluded": 12.175034523010254,
+        "raw_logit_contribution": -0.016130447387695312,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.142316818237305,
+          "total_raw_logit_contribution": 0.016587257385253906,
+          "wavelet_similarity_when_suppressed": 0.9955534934997559,
+          "wavelet_similarity_contribution": -0.0002071857452392578,
+          "wavelet_only_raw_logit_when_suppressed": 12.158894538879395,
+          "wavelet_only_raw_logit_contribution": 9.5367431640625e-06
+        }
+      },
+      {
+        "patch_id": 74,
+        "box_xyxy": [
+          30,
+          135,
+          45,
+          150
+        ],
+        "stage": "refined",
+        "parent_patch_id": 18,
+        "probability_when_occluded": 0.9999949932098389,
+        "confidence_contribution": -2.384185791015625e-07,
+        "raw_logit_when_occluded": 12.194201469421387,
+        "raw_logit_contribution": -0.035297393798828125,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.167353630065918,
+          "total_raw_logit_contribution": -0.008449554443359375,
+          "wavelet_similarity_when_suppressed": 0.9953261613845825,
+          "wavelet_similarity_contribution": 2.014636993408203e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158897399902344,
+          "wavelet_only_raw_logit_contribution": 6.67572021484375e-06
+        }
+      },
+      {
+        "patch_id": 75,
+        "box_xyxy": [
+          0,
+          150,
+          15,
+          165
+        ],
+        "stage": "refined",
+        "parent_patch_id": 18,
+        "probability_when_occluded": 0.9999959468841553,
+        "confidence_contribution": -1.1920928955078125e-06,
+        "raw_logit_when_occluded": 12.422643661499023,
+        "raw_logit_contribution": -0.26373958587646484,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.115167617797852,
+          "total_raw_logit_contribution": 0.04373645782470703,
+          "wavelet_similarity_when_suppressed": 0.995454728603363,
+          "wavelet_similarity_contribution": -0.00010842084884643555,
+          "wavelet_only_raw_logit_when_suppressed": 12.158897399902344,
+          "wavelet_only_raw_logit_contribution": 6.67572021484375e-06
+        }
+      },
+      {
+        "patch_id": 76,
+        "box_xyxy": [
+          15,
+          150,
+          30,
+          165
+        ],
+        "stage": "refined",
+        "parent_patch_id": 18,
+        "probability_when_occluded": 0.999994158744812,
+        "confidence_contribution": 5.960464477539062e-07,
+        "raw_logit_when_occluded": 12.05653190612793,
+        "raw_logit_contribution": 0.1023721694946289,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.18372917175293,
+          "total_raw_logit_contribution": -0.024825096130371094,
+          "wavelet_similarity_when_suppressed": 0.9953092336654663,
+          "wavelet_similarity_contribution": 3.707408905029297e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158900260925293,
+          "wavelet_only_raw_logit_contribution": 3.814697265625e-06
+        }
+      },
+      {
+        "patch_id": 77,
+        "box_xyxy": [
+          30,
+          150,
+          45,
+          165
+        ],
+        "stage": "refined",
+        "parent_patch_id": 18,
+        "probability_when_occluded": 0.9999951124191284,
+        "confidence_contribution": -3.5762786865234375e-07,
+        "raw_logit_when_occluded": 12.235605239868164,
+        "raw_logit_contribution": -0.07670116424560547,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.256616592407227,
+          "total_raw_logit_contribution": -0.09771251678466797,
+          "wavelet_similarity_when_suppressed": 0.9954493045806885,
+          "wavelet_similarity_contribution": -0.000102996826171875,
+          "wavelet_only_raw_logit_when_suppressed": 12.15889835357666,
+          "wavelet_only_raw_logit_contribution": 5.7220458984375e-06
+        }
+      },
+      {
+        "patch_id": 78,
+        "box_xyxy": [
+          0,
+          165,
+          15,
+          180
+        ],
+        "stage": "refined",
+        "parent_patch_id": 18,
+        "probability_when_occluded": 0.9999947547912598,
+        "confidence_contribution": 0.0,
+        "raw_logit_when_occluded": 12.166526794433594,
+        "raw_logit_contribution": -0.007622718811035156,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.07777214050293,
+          "total_raw_logit_contribution": 0.0811319351196289,
+          "wavelet_similarity_when_suppressed": 0.9953795075416565,
+          "wavelet_similarity_contribution": -3.319978713989258e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 79,
+        "box_xyxy": [
+          15,
+          165,
+          30,
+          180
+        ],
+        "stage": "refined",
+        "parent_patch_id": 18,
+        "probability_when_occluded": 0.9999939203262329,
+        "confidence_contribution": 8.344650268554688e-07,
+        "raw_logit_when_occluded": 12.020346641540527,
+        "raw_logit_contribution": 0.13855743408203125,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.113373756408691,
+          "total_raw_logit_contribution": 0.04553031921386719,
+          "wavelet_similarity_when_suppressed": 0.9954020380973816,
+          "wavelet_similarity_contribution": -5.5730342864990234e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 80,
+        "box_xyxy": [
+          30,
+          165,
+          45,
+          180
+        ],
+        "stage": "refined",
+        "parent_patch_id": 18,
+        "probability_when_occluded": 0.9999946355819702,
+        "confidence_contribution": 1.1920928955078125e-07,
+        "raw_logit_when_occluded": 12.131875991821289,
+        "raw_logit_contribution": 0.02702808380126953,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.217700958251953,
+          "total_raw_logit_contribution": -0.05879688262939453,
+          "wavelet_similarity_when_suppressed": 0.9952861070632935,
+          "wavelet_similarity_contribution": 6.020069122314453e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 81,
+        "box_xyxy": [
+          180,
+          45,
+          195,
+          60
+        ],
+        "stage": "refined",
+        "parent_patch_id": 10,
+        "probability_when_occluded": 0.9999955892562866,
+        "confidence_contribution": -8.344650268554688e-07,
+        "raw_logit_when_occluded": 12.328845024108887,
+        "raw_logit_contribution": -0.16994094848632812,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.151566505432129,
+          "total_raw_logit_contribution": 0.0073375701904296875,
+          "wavelet_similarity_when_suppressed": 0.9952896237373352,
+          "wavelet_similarity_contribution": 5.6684017181396484e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 82,
+        "box_xyxy": [
+          195,
+          45,
+          210,
+          60
+        ],
+        "stage": "refined",
+        "parent_patch_id": 10,
+        "probability_when_occluded": 0.9999947547912598,
+        "confidence_contribution": 0.0,
+        "raw_logit_when_occluded": 12.1656494140625,
+        "raw_logit_contribution": -0.006745338439941406,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.158548355102539,
+          "total_raw_logit_contribution": 0.00035572052001953125,
+          "wavelet_similarity_when_suppressed": 0.9953300952911377,
+          "wavelet_similarity_contribution": 1.621246337890625e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158897399902344,
+          "wavelet_only_raw_logit_contribution": 6.67572021484375e-06
+        }
+      },
+      {
+        "patch_id": 83,
+        "box_xyxy": [
+          210,
+          45,
+          225,
+          60
+        ],
+        "stage": "refined",
+        "parent_patch_id": 10,
+        "probability_when_occluded": 0.9999953508377075,
+        "confidence_contribution": -5.960464477539062e-07,
+        "raw_logit_when_occluded": 12.276034355163574,
+        "raw_logit_contribution": -0.11713027954101562,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.169537544250488,
+          "total_raw_logit_contribution": -0.010633468627929688,
+          "wavelet_similarity_when_suppressed": 0.995319128036499,
+          "wavelet_similarity_contribution": 2.7179718017578125e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 84,
+        "box_xyxy": [
+          180,
+          60,
+          195,
+          75
+        ],
+        "stage": "refined",
+        "parent_patch_id": 10,
+        "probability_when_occluded": 0.9999946355819702,
+        "confidence_contribution": 1.1920928955078125e-07,
+        "raw_logit_when_occluded": 12.132235527038574,
+        "raw_logit_contribution": 0.026668548583984375,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.104901313781738,
+          "total_raw_logit_contribution": 0.05400276184082031,
+          "wavelet_similarity_when_suppressed": 0.9952966570854187,
+          "wavelet_similarity_contribution": 4.965066909790039e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.15889835357666,
+          "wavelet_only_raw_logit_contribution": 5.7220458984375e-06
+        }
+      },
+      {
+        "patch_id": 85,
+        "box_xyxy": [
+          195,
+          60,
+          210,
+          75
+        ],
+        "stage": "refined",
+        "parent_patch_id": 10,
+        "probability_when_occluded": 0.999995231628418,
+        "confidence_contribution": -4.76837158203125e-07,
+        "raw_logit_when_occluded": 12.263574600219727,
+        "raw_logit_contribution": -0.10467052459716797,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.10367202758789,
+          "total_raw_logit_contribution": 0.05523204803466797,
+          "wavelet_similarity_when_suppressed": 0.9953479766845703,
+          "wavelet_similarity_contribution": -1.6689300537109375e-06,
+          "wavelet_only_raw_logit_when_suppressed": 12.158897399902344,
+          "wavelet_only_raw_logit_contribution": 6.67572021484375e-06
+        }
+      },
+      {
+        "patch_id": 86,
+        "box_xyxy": [
+          210,
+          60,
+          225,
+          75
+        ],
+        "stage": "refined",
+        "parent_patch_id": 10,
+        "probability_when_occluded": 0.9999945163726807,
+        "confidence_contribution": 2.384185791015625e-07,
+        "raw_logit_when_occluded": 12.114263534545898,
+        "raw_logit_contribution": 0.044640541076660156,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.114520072937012,
+          "total_raw_logit_contribution": 0.044384002685546875,
+          "wavelet_similarity_when_suppressed": 0.9953151941299438,
+          "wavelet_similarity_contribution": 3.1113624572753906e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158900260925293,
+          "wavelet_only_raw_logit_contribution": 3.814697265625e-06
+        }
+      },
+      {
+        "patch_id": 87,
+        "box_xyxy": [
+          180,
+          75,
+          195,
+          90
+        ],
+        "stage": "refined",
+        "parent_patch_id": 10,
+        "probability_when_occluded": 0.9999954700469971,
+        "confidence_contribution": -7.152557373046875e-07,
+        "raw_logit_when_occluded": 12.29922866821289,
+        "raw_logit_contribution": -0.14032459259033203,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.163009643554688,
+          "total_raw_logit_contribution": -0.004105567932128906,
+          "wavelet_similarity_when_suppressed": 0.9952843189239502,
+          "wavelet_similarity_contribution": 6.198883056640625e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158899307250977,
+          "wavelet_only_raw_logit_contribution": 4.76837158203125e-06
+        }
+      },
+      {
+        "patch_id": 88,
+        "box_xyxy": [
+          195,
+          75,
+          210,
+          90
+        ],
+        "stage": "refined",
+        "parent_patch_id": 10,
+        "probability_when_occluded": 0.9999945163726807,
+        "confidence_contribution": 2.384185791015625e-07,
+        "raw_logit_when_occluded": 12.111512184143066,
+        "raw_logit_contribution": 0.04739189147949219,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.08551025390625,
+          "total_raw_logit_contribution": 0.0733938217163086,
+          "wavelet_similarity_when_suppressed": 0.9952865839004517,
+          "wavelet_similarity_contribution": 5.9723854064941406e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158904075622559,
+          "wavelet_only_raw_logit_contribution": 0.0
+        }
+      },
+      {
+        "patch_id": 89,
+        "box_xyxy": [
+          210,
+          75,
+          225,
+          90
+        ],
+        "stage": "refined",
+        "parent_patch_id": 10,
+        "probability_when_occluded": 0.9999948740005493,
+        "confidence_contribution": -1.1920928955078125e-07,
+        "raw_logit_when_occluded": 12.169881820678711,
+        "raw_logit_contribution": -0.010977745056152344,
+        "high_frequency_ablation": {
+          "total_raw_logit_when_suppressed": 12.077068328857422,
+          "total_raw_logit_contribution": 0.08183574676513672,
+          "wavelet_similarity_when_suppressed": 0.9953612089157104,
+          "wavelet_similarity_contribution": -1.4901161193847656e-05,
+          "wavelet_only_raw_logit_when_suppressed": 12.158904075622559,
+          "wavelet_only_raw_logit_contribution": 0.0
+        }
+      }
+    ]
+  },
+  "frequency_attribution": {
+    "method": "local_low_pass_with_wavelet_only_fusion_counterfactual",
+    "semantics": "Each region is locally low-passed and forwarded through the real model. For wavelet_only_raw_logit_contribution, a temporary inference hook fixes every legacy fusion feature except the model-computed wavelet_similarity scalar. No layer, parameter, architecture, or checkpoint is changed.",
+    "base_wavelet_similarity": 0.9953463077545166,
+    "base_raw_logit": 12.158904075622559
+  },
+  "experts": [],
+  "branches": [
+    {
+      "component": "global_spatial_and_wavelet_view",
+      "probability_when_neutralized": 0.99991774559021,
+      "confidence_delta": 7.700920104980469e-05
+    },
+    {
+      "component": "semantic_view",
+      "probability_when_neutralized": 0.9963952898979187,
+      "confidence_delta": 0.0035994648933410645
+    },
+    {
+      "component": "native_tiles",
+      "probability_when_neutralized": 0.9969224333763123,
+      "confidence_delta": 0.0030723214149475098
+    }
+  ],
+  "tiles": [
+    {
+      "tile": 0,
+      "attention": 0.3480522036552429,
+      "raw_logit": 3.0326180458068848
+    },
+    {
+      "tile": 1,
+      "attention": 0.3031577467918396,
+      "raw_logit": 3.054058074951172
+    },
+    {
+      "tile": 2,
+      "attention": 0.16202716529369354,
+      "raw_logit": 3.3654208183288574
+    },
+    {
+      "tile": 3,
+      "attention": 0.18676289916038513,
+      "raw_logit": 2.99979305267334
+    }
+  ],
+  "transforms": [
+    {
+      "variant": "clean",
+      "operation": "clean",
+      "value": null,
+      "raw_logit": 12.158899307250977,
+      "calibrated_logit": 12.158899307250977,
+      "probability_fake": 0.9999947547912598,
+      "wavelet_similarity": 0.9953463077545166
+    },
+    {
+      "variant": "jpeg_q90",
+      "operation": "jpeg",
+      "value": 90,
+      "raw_logit": 13.559847831726074,
+      "calibrated_logit": 13.559847831726074,
+      "probability_fake": 0.9999986886978149,
+      "wavelet_similarity": 0.9958029985427856
+    },
+    {
+      "variant": "jpeg_q70",
+      "operation": "jpeg",
+      "value": 70,
+      "raw_logit": 13.616886138916016,
+      "calibrated_logit": 13.616886138916016,
+      "probability_fake": 0.9999988079071045,
+      "wavelet_similarity": 0.9957296252250671
+    },
+    {
+      "variant": "jpeg_q50",
+      "operation": "jpeg",
+      "value": 50,
+      "raw_logit": 14.11557388305664,
+      "calibrated_logit": 14.11557388305664,
+      "probability_fake": 0.9999992847442627,
+      "wavelet_similarity": 0.9966500401496887
+    },
+    {
+      "variant": "jpeg_q30",
+      "operation": "jpeg",
+      "value": 30,
+      "raw_logit": 14.387362480163574,
+      "calibrated_logit": 14.387362480163574,
+      "probability_fake": 0.9999994039535522,
+      "wavelet_similarity": 0.9962580800056458
+    },
+    {
+      "variant": "blur_sigma0.5",
+      "operation": "blur",
+      "value": 0.5,
+      "raw_logit": 12.44532299041748,
+      "calibrated_logit": 12.44532299041748,
+      "probability_fake": 0.9999960660934448,
+      "wavelet_similarity": 0.993965744972229
+    },
+    {
+      "variant": "blur_sigma1",
+      "operation": "blur",
+      "value": 1.0,
+      "raw_logit": 10.804717063903809,
+      "calibrated_logit": 10.804717063903809,
+      "probability_fake": 0.9999797344207764,
+      "wavelet_similarity": 0.979444682598114
+    },
+    {
+      "variant": "blur_sigma2",
+      "operation": "blur",
+      "value": 2.0,
+      "raw_logit": 11.064010620117188,
+      "calibrated_logit": 11.064010620117188,
+      "probability_fake": 0.9999843835830688,
+      "wavelet_similarity": 0.904674768447876
+    },
+    {
+      "variant": "resize_0.5x",
+      "operation": "resize",
+      "value": 0.5,
+      "raw_logit": 13.185081481933594,
+      "calibrated_logit": 13.185081481933594,
+      "probability_fake": 0.9999980926513672,
+      "wavelet_similarity": 0.9910330772399902
+    },
+    {
+      "variant": "resize_0.25x",
+      "operation": "resize",
+      "value": 0.25,
+      "raw_logit": 13.153890609741211,
+      "calibrated_logit": 13.153890609741211,
+      "probability_fake": 0.9999980926513672,
+      "wavelet_similarity": 0.9826061725616455
+    },
+    {
+      "variant": "noise_sigma0.02",
+      "operation": "noise",
+      "value": 0.02,
+      "raw_logit": 11.85837459564209,
+      "calibrated_logit": 11.85837459564209,
+      "probability_fake": 0.9999929666519165,
+      "wavelet_similarity": 0.9958710670471191
+    },
+    {
+      "variant": "noise_sigma0.05",
+      "operation": "noise",
+      "value": 0.05,
+      "raw_logit": 11.613167762756348,
+      "calibrated_logit": 11.613167762756348,
+      "probability_fake": 0.9999909400939941,
+      "wavelet_similarity": 0.9970989227294922
+    },
+    {
+      "variant": "noise_sigma0.10",
+      "operation": "noise",
+      "value": 0.1,
+      "raw_logit": 12.827715873718262,
+      "calibrated_logit": 12.827715873718262,
+      "probability_fake": 0.9999972581863403,
+      "wavelet_similarity": 0.9974789619445801
+    },
+    {
+      "variant": "color_minus20",
+      "operation": "color",
+      "value": 0.8,
+      "raw_logit": 11.841402053833008,
+      "calibrated_logit": 11.841402053833008,
+      "probability_fake": 0.999992847442627,
+      "wavelet_similarity": 0.9939907193183899
+    },
+    {
+      "variant": "color_plus20",
+      "operation": "color",
+      "value": 1.2,
+      "raw_logit": 13.14835262298584,
+      "calibrated_logit": 13.14835262298584,
+      "probability_fake": 0.9999980926513672,
+      "wavelet_similarity": 0.9972442388534546
+    },
+    {
+      "variant": "center_crop_80",
+      "operation": "crop",
+      "value": 0.8,
+      "raw_logit": 11.074265480041504,
+      "calibrated_logit": 11.074265480041504,
+      "probability_fake": 0.9999845027923584,
+      "wavelet_similarity": 0.995389997959137
+    }
+  ],
+  "visualizations": {
+    "heatmap_attribution": {
+      "file": "heatmap_attribution.png",
+      "overlay_file": "heatmap_attribution_overlay.png",
+      "signal": "raw_logit_contribution = logit(original) - logit(region occluded)",
+      "colormap": "coolwarm",
+      "normalization": "symmetric 99th-percentile per image",
+      "value_range": [
+        -0.7362031936645508,
+        0.7362031936645508
+      ]
+    },
+    "heatmap_texture": {
+      "file": "heatmap_texture.png",
+      "signal": "input-only per-pixel high-frequency residual magnitude; independent of model output",
+      "colormap": "inferno",
+      "normalization": "99th percentile"
+    },
+    "heatmap_frequency_contribution": {
+      "file": "heatmap_frequency_contribution.png",
+      "overlay_file": "heatmap_frequency_overlay.png",
+      "signal": "wavelet-only raw-logit contribution under local high-frequency suppression",
+      "colormap": "coolwarm",
+      "normalization": "symmetric 99th-percentile per image",
+      "value_range": [
+        -1.049041748046875e-05,
+        1.049041748046875e-05
+      ]
+    }
+  }
+}
