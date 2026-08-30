@@ -58,6 +58,7 @@ def main() -> None:
         for record in read_jsonl(path)
     }
     manifest_paths: set[str] = set()
+    suite_root = Path(index["root"]).resolve()
     verified = []
     for entry in index["benchmarks"]:
         benchmark_id = str(entry["benchmark_id"])
@@ -78,9 +79,11 @@ def main() -> None:
         local_paths: set[str] = set()
         local_hashes: set[str] = set()
         for record in records:
-            path = Path(record["path"])
-            if "external_eval_only" not in path.parts:
-                raise RuntimeError(f"Image escaped evaluation-only namespace: {path}")
+            path = Path(record["path"]).resolve()
+            try:
+                path.relative_to(suite_root)
+            except ValueError as error:
+                raise RuntimeError(f"Image escaped benchmark root: {path}") from error
             if str(path) in local_paths:
                 raise RuntimeError(f"Duplicate path within {benchmark_id}: {path}")
             digest = sha256(path)

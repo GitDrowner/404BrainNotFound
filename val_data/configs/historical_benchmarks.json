@@ -1,0 +1,55 @@
+{
+  "seed": 20260826,
+  "output_root": "data/external_eval_only/historical_benchmarks",
+  "require_blocklist": true,
+  "training_manifests": [],
+  "blocked_external_manifests": [],
+  "datasets": {
+    "dalle3_advanced": {
+      "benchmark_id": "coco_dalle3_advanced",
+      "repo": "Rajarshi-Roy-research/Defactify_Image_Dataset",
+      "revision": "787334f7857fa54f29027a7f09c30e895ad486ef",
+      "license": "see-upstream-dataset-card",
+      "split": "validation",
+      "parquet_files": [
+        "data/validation-00000-of-00002.parquet",
+        "data/validation-00001-of-00002.parquet"
+      ],
+      "real_label_a": 0,
+      "real_label_b": 0,
+      "fake_label_a": 1,
+      "dalle3_label_b": 4,
+      "caption_pairs": 1500,
+      "near_duplicate_dhash_radius": 4
+    },
+    "coco_midjourney": {
+      "benchmark_id": "coco_midjourney_historical",
+      "license": "see-each-upstream-dataset-card",
+      "sample_per_class": 1000,
+      "sources": [
+        {
+          "name": "coco_real_test",
+          "repo": "bitmind/MS-COCO-unique",
+          "revision": "21aa022d20f360544a30e0c5a303b4c2bdbec8b5",
+          "config": "default",
+          "split": "train",
+          "shards": [0, 1, 2],
+          "label": 0,
+          "generator": "coco_real",
+          "sampling_seed": 20274952
+        },
+        {
+          "name": "midjourney_fake_test",
+          "repo": "bitmind/GenImage_MidJourney",
+          "revision": "583d750ace927061a1159de64ca65b82f784f661",
+          "config": "default",
+          "split": "train",
+          "shards": [0, 1, 2],
+          "label": 1,
+          "generator": "midjourney",
+          "sampling_seed": 20275961
+        }
+      ]
+    }
+  }
+}

@@ -1,11 +1,11 @@
 {
-  "schema": "aigc_external_validation_catalog_v1",
-  "snapshot_name": "generalization_suite_20260830",
+  "schema": "aigc_external_validation_catalog_v2",
+  "snapshot_name": "seven_benchmark_inventory_20260830",
   "snapshot_date": "2026-08-30",
   "policy": "one dataset per manifest; never pool samples or metrics",
   "contains_images": false,
-  "inventory_total_not_for_pooled_metrics": 920,
-  "historical_blocklist": {
+  "inventory_total_not_for_pooled_metrics": 5912,
+  "latest_suite_blocklist_at_preparation": {
     "job_773086_training_records": 44377,
     "dalle3_advanced_records": 2992,
     "commercial_frontier_records": 13,
@@ -131,6 +131,55 @@
         "license": "apache-2.0"
       },
       "historical_manifest_sha256": "74990fa1020b3f3b6c8941ddc6c314046836b8b13766d7102f204d78b0701fec"
+    },
+    {
+      "benchmark_id": "coco_dalle3_advanced",
+      "records": 2992,
+      "real": 1496,
+      "fake": 1496,
+      "supports_auroc": true,
+      "fake_only": false,
+      "generators": {
+        "coco_real": 1496,
+        "dalle3": 1496
+      },
+      "seen_in_training_name_matches": 0,
+      "source": {
+        "repo": "Rajarshi-Roy-research/Defactify_Image_Dataset",
+        "revision": "787334f7857fa54f29027a7f09c30e895ad486ef",
+        "split": "validation",
+        "license": "see-upstream-dataset-card"
+      },
+      "selection": "1500 caption pairs; pairwise quarantine against training dHash radius 4",
+      "historical_manifest_sha256": "21cab0038b09d899295c4faf08aaf73c4b7fd20a741302488eebda9957c87046"
+    },
+    {
+      "benchmark_id": "coco_midjourney_historical",
+      "records": 2000,
+      "real": 1000,
+      "fake": 1000,
+      "supports_auroc": true,
+      "fake_only": false,
+      "generators": {
+        "coco_real": 1000,
+        "midjourney": 1000
+      },
+      "seen_in_training_name_matches": 0,
+      "source": {
+        "repos": [
+          "bitmind/MS-COCO-unique",
+          "bitmind/GenImage_MidJourney"
+        ],
+        "revisions": [
+          "21aa022d20f360544a30e0c5a303b4c2bdbec8b5",
+          "583d750ace927061a1159de64ca65b82f784f661"
+        ],
+        "split": "train (upstream only; locally evaluation-only)",
+        "license": "see-each-upstream-dataset-card"
+      },
+      "selection": "fixed-revision historical reservoir sample; 1000 per class",
+      "historical_archived_manifest_sha256": "53fa79a06c2d8dcae3c5e37f1d813d7931a77ec88c93e6cd8578cc7a2d745c79",
+      "historical_receipt_declared_manifest_sha256": "e9ccfd935c3812b998f378570ff16033743927206dc4ef8e82c4fec121eb511b"
     }
   ]
 }

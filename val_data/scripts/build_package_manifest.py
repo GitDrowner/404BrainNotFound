@@ -35,11 +35,11 @@ def main() -> None:
             }
         )
     payload = {
-        "schema": "aigc-external-validation-preparation-v1",
+        "schema": "aigc-external-validation-preparation-v2",
         "contains_images": False,
         "contains_generated_manifests": False,
-        "snapshot": "generalization_suite_20260830",
-        "entrypoint": "python scripts/prepare_and_verify.py",
+        "snapshot": "seven_benchmark_inventory_20260830",
+        "entrypoint": "python scripts/prepare_all_validation_data.py",
         "file_count": len(files),
         "files": files,
     }
