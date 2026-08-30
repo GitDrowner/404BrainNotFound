@@ -1,0 +1,93 @@
+seed: 20260830
+output_dir: outputs/job-773086-reproduction
+
+data:
+  # This manifest is exactly the 759921 corpus plus the leakage-checked
+  # OpenFake/TIGAS/local additions used by 770876.
+  train_manifest: data/fusion_v2/manifests/train.jsonl
+  val_manifest: data/fusion_v2/manifests/validation.jsonl
+  test_manifest: data/fusion_v2/manifests/test.jsonl
+  image_size: 224
+  semantic_image_size: 384
+  num_tiles: 4
+  batch_size: 192
+  num_workers: 16
+  max_train_samples: null
+  max_val_samples: null
+  max_test_samples: null
+  clean_probability: 0.20
+  compound_probability: 0.40
+  balanced_sampler: true
+  # Balance real/fake without granting a 12-image source the same probability
+  # mass as a source containing thousands of images. GroupDRO still handles source.
+  balanced_sampler_grouping: label
+
+model:
+  forensic_backbone: vit_base_patch14_dinov2.lvd142m
+  semantic_backbone: vit_so400m_patch14_siglip_384.webli
+  pretrained: true
+  freeze_forensic: true
+  freeze_semantic: true
+  lora_last_blocks: 4
+  lora_rank: 8
+  lora_alpha: 16
+  hidden_dim: 512
+  dropout: 0.22
+  use_semantic_branch: true
+  use_wavelet_branch: true
+  degradation_classes: 8
+
+train:
+  # Portable copy of the exact 759921 initializer used by job 773086.
+  initial_checkpoint: checkpoint/initial_759921.pt
+  epochs: 6
+  head_warmup_epochs: 0
+  learning_rate: 0.00015
+  lora_learning_rate: 0.00003
+  weight_decay: 0.05
+  warmup_ratio: 0.05
+  gradient_accumulation: 1
+  gradient_clip: 1.0
+  amp: bf16
+  compile: false
+  log_every: 20
+  save_every_epoch: true
+  early_stopping_patience: 3
+
+loss:
+  mode: mlp_normalized
+  classification_anchor: 1.0
+  auxiliary_budget: 1.0
+  controller_learning_rate: 0.001
+  warmup_ratio: 0.10
+  ema_decay: 0.98
+  min_weight: 0.05
+  hidden_dim: 32
+  groups:
+    consistency:
+      terms: [consistency]
+    feature_consistency:
+      terms: [feature_consistency]
+    degradation_classification:
+      terms: [degradation_classification]
+    degradation_severity:
+      terms: [degradation_severity]
+    tile_auxiliary:
+      terms: [tile_auxiliary]
+
+robust_optimization:
+  enabled: true
+  include_degradation: false
+  eta: 0.05
+  hard_fraction: 0.25
+  hard_weight: 0.25
+  class_balance_weight: 0.20
+
+evaluation:
+  threshold: 0.5
+  fixed_threshold: true
+  evaluate_test_each_epoch: false
+  # best.pt is selected only on the 5,298-image held-out validation split from
+  # the training-data system. External DALL-E/test datasets are opened later.
+  selection_metric: auroc
+  confidence: calibrated_probability_fake

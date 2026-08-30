@@ -1,0 +1,12 @@
+{
+  "format": "aigc_platt_v1",
+  "fit_role": "calibration_only",
+  "samples": 4700,
+  "temperature": 3.1648788452148438,
+  "bias": -2.4065542221069336,
+  "threshold": 0.7000670433044434,
+  "worst_group_recall": 0.4584615384615385,
+  "accuracy_at_threshold": 0.7102127659574468,
+  "nll": 0.433682382106781,
+  "ece_15": 0.10781005024909973
+}

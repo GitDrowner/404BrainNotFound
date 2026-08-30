@@ -4,5 +4,8 @@ Feishu link：https://my.feishu.cn/docx/LOrFdQW1QoQ9c4xNppccnU9xnHf
 
 ## AIGC image detection
 
-The consolidated implementation, checkpoint, explainability demos, reproducible job-759921
-statistics, and follow-up learnable-loss experiment live in [`759921/`](759921/PROJECT_OVERVIEW.md).
+The repository currently contains two auditable experiment snapshots:
+
+- [`759921/`](759921/PROJECT_OVERVIEW.md): the original consolidated robust detector.
+- [`773086/`](773086/README.md): the same architecture trained with shared MLP-normalized
+  auxiliary losses, calibrated local backend, selected checkpoint, and statistical results.
