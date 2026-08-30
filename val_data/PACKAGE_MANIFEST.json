@@ -1,0 +1,70 @@
+{
+  "schema": "aigc-external-validation-preparation-v1",
+  "contains_images": false,
+  "contains_generated_manifests": false,
+  "snapshot": "generalization_suite_20260830",
+  "entrypoint": "python scripts/prepare_and_verify.py",
+  "file_count": 12,
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 82,
+      "sha256": "77d971cc7d474ebc6214487a1e4560554f7b6cc46cfa8be4153bdd2f9a6346c7"
+    },
+    {
+      "path": "AGENT_GUIDE.md",
+      "bytes": 1070,
+      "sha256": "fbad0adc2641995f4a4ea23ae292ada79fddd6c677c6e8ca0fce83bce6d32d8f"
+    },
+    {
+      "path": "PROVENANCE.md",
+      "bytes": 2068,
+      "sha256": "fefacef36221a6f3914116e0cf695aae528c54e81de3253dee91f614c782a492"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4046,
+      "sha256": "6c58ef88cdf59b13a6e3f72ec17a24c2721e346cf5dd5a926262d313965edc16"
+    },
+    {
+      "path": "configs/external_generalization_suite.json",
+      "bytes": 1695,
+      "sha256": "54c99aff9bf9a2c42837c6adcdb3706e5d89aaf6da35c68676f7322e7d6c7d2e"
+    },
+    {
+      "path": "metadata/DATASET_CATALOG.json",
+      "bytes": 4047,
+      "sha256": "cb2008386fb016114a69d5692213d53fb03f6953f6ffcfe3e4918148967335d5"
+    },
+    {
+      "path": "requirements.txt",
+      "bytes": 58,
+      "sha256": "6b55d8bf7fa46c9bf5acb3f5f0e53ae22ce0deebbea76818df064cd02244daef"
+    },
+    {
+      "path": "scripts/build_package_manifest.py",
+      "bytes": 1392,
+      "sha256": "bef4b4fb0cc233d28b4a01dcd201bde0651b2fce4b870a98c7d7b33d980147c3"
+    },
+    {
+      "path": "scripts/prepare_and_verify.py",
+      "bytes": 1966,
+      "sha256": "268b6f03927ad57b14d81c6d92c149ba013605f625e271e4128b83feac1d1e66"
+    },
+    {
+      "path": "scripts/prepare_external_generalization_suite.py",
+      "bytes": 19538,
+      "sha256": "6bfceac25302d53573112d2f7743cd2fa182499f46ee37acae36fbd9fa7aefaf"
+    },
+    {
+      "path": "scripts/verify_external_generalization_suite.py",
+      "bytes": 4695,
+      "sha256": "ed2e82ac7c5c6566f8a1051adea481d3257023a6e62c5f8b580027f4aacadab5"
+    },
+    {
+      "path": "tests/test_package.py",
+      "bytes": 2829,
+      "sha256": "d30cd203852a0fb07876896deccf45e40007647e36cab08f228969f1a5e09af8"
+    }
+  ]
+}

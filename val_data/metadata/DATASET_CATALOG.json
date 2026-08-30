@@ -1,0 +1,136 @@
+{
+  "schema": "aigc_external_validation_catalog_v1",
+  "snapshot_name": "generalization_suite_20260830",
+  "snapshot_date": "2026-08-30",
+  "policy": "one dataset per manifest; never pool samples or metrics",
+  "contains_images": false,
+  "inventory_total_not_for_pooled_metrics": 920,
+  "historical_blocklist": {
+    "job_773086_training_records": 44377,
+    "dalle3_advanced_records": 2992,
+    "commercial_frontier_records": 13,
+    "unique_blocked_sha256": 47382
+  },
+  "benchmarks": [
+    {
+      "benchmark_id": "ditfake_flux1_schnell",
+      "records": 200,
+      "real": 100,
+      "fake": 100,
+      "supports_auroc": true,
+      "fake_only": false,
+      "generators": {
+        "coco_real": 100,
+        "FLUX.1-schnell": 100
+      },
+      "seen_in_training_name_matches": 100,
+      "source": {
+        "repo": "lioooox/DiTFake",
+        "revision": "66105473704c6ebcc03cb971322bb95f04c7bdc4",
+        "split": "test",
+        "license": "apache-2.0"
+      },
+      "historical_manifest_sha256": "04ec4752d6c31e7817e901e3446d9c8e6072f63f4278f7bce554804cbcc4af8b"
+    },
+    {
+      "benchmark_id": "ditfake_pixart_sigma",
+      "records": 200,
+      "real": 100,
+      "fake": 100,
+      "supports_auroc": true,
+      "fake_only": false,
+      "generators": {
+        "coco_real": 100,
+        "PixArt-Sigma-XL-2-1024-MS": 100
+      },
+      "seen_in_training_name_matches": 0,
+      "source": {
+        "repo": "lioooox/DiTFake",
+        "revision": "66105473704c6ebcc03cb971322bb95f04c7bdc4",
+        "split": "test",
+        "license": "apache-2.0"
+      },
+      "historical_manifest_sha256": "0b8025012b1c49ae45391b6930c7c9298de9dd15b581e4f57b9571be87b40985"
+    },
+    {
+      "benchmark_id": "ditfake_sd3_medium",
+      "records": 200,
+      "real": 100,
+      "fake": 100,
+      "supports_auroc": true,
+      "fake_only": false,
+      "generators": {
+        "coco_real": 100,
+        "stable-diffusion-3-medium-diffusers": 100
+      },
+      "seen_in_training_name_matches": 0,
+      "source": {
+        "repo": "lioooox/DiTFake",
+        "revision": "66105473704c6ebcc03cb971322bb95f04c7bdc4",
+        "split": "test",
+        "license": "apache-2.0"
+      },
+      "historical_manifest_sha256": "f267edc3d8d4c0af6cff6ae01b7fee7c2ec3ee3d4cf4603aac6fc03027da3787"
+    },
+    {
+      "benchmark_id": "frontier_small_2026",
+      "records": 140,
+      "real": 82,
+      "fake": 58,
+      "supports_auroc": true,
+      "fake_only": false,
+      "generators": {
+        "real": 82,
+        "flux": 9,
+        "imagegbt": 13,
+        "nano": 12,
+        "sdxl": 12,
+        "seedream": 12
+      },
+      "seen_in_training_name_matches": 12,
+      "source": {
+        "repo": "ash12321/ai-detector-benchmark-test-data",
+        "revision": "cc47a51ab993b4b6937acd29774d931cb756d43a",
+        "split": "test",
+        "license": "apache-2.0"
+      },
+      "historical_manifest_sha256": "b32689a895853f8d482f43d800068b60f5fb53560c31b6dc2d91e86654822870"
+    },
+    {
+      "benchmark_id": "qwen_image_bench_frontier_fake_only",
+      "records": 180,
+      "real": 0,
+      "fake": 180,
+      "supports_auroc": false,
+      "fake_only": true,
+      "generators": {
+        "FLUX.2-pro": 10,
+        "FLUX.2_max": 10,
+        "GLM-Image": 10,
+        "GPT-Image-1": 10,
+        "GPT-Image-1.5": 10,
+        "HunyuanImage-3.0": 10,
+        "Imagen-4.0": 10,
+        "Imagen-4.0-Ultra": 10,
+        "Qwen-Image": 10,
+        "Qwen-Image-2.0-pro": 10,
+        "Qwen-Image-2512": 10,
+        "Seedream-4.0": 10,
+        "Seedream-4.5": 10,
+        "Seedream-5.0": 10,
+        "gpt-image-2": 10,
+        "kling_v2_1": 10,
+        "nano-banana-2.0": 10,
+        "nano-banana-pro": 10
+      },
+      "seen_in_training_name_matches": 30,
+      "source": {
+        "repo": "Qwen/Qwen-Image-Bench",
+        "revision": "d2493deb153b020cf169c7e3f57d15e4dd697038",
+        "split": "test",
+        "license": "apache-2.0"
+      },
+      "historical_manifest_sha256": "74990fa1020b3f3b6c8941ddc6c314046836b8b13766d7102f204d78b0701fec"
+    }
+  ]
+}

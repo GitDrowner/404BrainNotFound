@@ -1,0 +1,9 @@
+.venv/
+.cache/
+__pycache__/
+*.py[cod]
+data/
+local_inputs/
+outputs/
+*.tar.gz
+*.zip

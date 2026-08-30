@@ -1,0 +1,58 @@
+{
+  "seed": 20260830,
+  "output_root": "data/external_eval_only/generalization_suite_20260830",
+  "require_blocklist": true,
+  "training_manifests": [],
+  "blocked_external_manifests": [],
+  "datasets": {
+    "ditfake": {
+      "repo": "lioooox/DiTFake",
+      "revision": "66105473704c6ebcc03cb971322bb95f04c7bdc4",
+      "license": "apache-2.0",
+      "split": "test",
+      "sample_per_class_per_generator": 100,
+      "generators": {
+        "ditfake_flux1_schnell": "FLUX.1-schnell",
+        "ditfake_pixart_sigma": "PixArt-Sigma-XL-2-1024-MS",
+        "ditfake_sd3_medium": "stable-diffusion-3-medium-diffusers"
+      }
+    },
+    "frontier_small": {
+      "repo": "ash12321/ai-detector-benchmark-test-data",
+      "revision": "cc47a51ab993b4b6937acd29774d931cb756d43a",
+      "license": "apache-2.0",
+      "config": "default",
+      "split": "test",
+      "expected_rows": 140,
+      "benchmark_id": "frontier_small_2026"
+    },
+    "qwen_image_bench": {
+      "repo": "Qwen/Qwen-Image-Bench",
+      "revision": "d2493deb153b020cf169c7e3f57d15e4dd697038",
+      "license": "apache-2.0",
+      "split": "test",
+      "sample_per_generator": 10,
+      "benchmark_id": "qwen_image_bench_frontier_fake_only",
+      "generators": [
+        "FLUX.2-pro",
+        "FLUX.2_max",
+        "GLM-Image",
+        "GPT-Image-1",
+        "GPT-Image-1.5",
+        "HunyuanImage-3.0",
+        "Imagen-4.0",
+        "Imagen-4.0-Ultra",
+        "Qwen-Image",
+        "Qwen-Image-2.0-pro",
+        "Qwen-Image-2512",
+        "Seedream-4.0",
+        "Seedream-4.5",
+        "Seedream-5.0",
+        "gpt-image-2",
+        "kling_v2_1",
+        "nano-banana-2.0",
+        "nano-banana-pro"
+      ]
+    }
+  }
+}
