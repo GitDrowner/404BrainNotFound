@@ -66,3 +66,16 @@ th,td{font-size:16px}.closing>p{font-size:13px}.closing>a{font-size:14px}footer{
 .evidence-tabs button{padding:8px 11px;border:0;border-radius:999px;color:#62666d;background:transparent;cursor:pointer;font-size:12px;font-weight:700;white-space:nowrap}
 .evidence-tabs button.active{color:#fff;background:var(--ink)}
 @media(max-width:760px){.evidence-title{align-items:flex-start;flex-direction:column}.evidence-tabs{width:100%}.evidence-tabs button{flex:1}}
+
+/* Real backend integration states and controls. */
+.prototype-note.backend-ready{box-shadow:inset 4px 0 0 var(--cyan)}
+.prototype-note.backend-offline{box-shadow:inset 4px 0 0 var(--magenta)}
+.upload-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:10px}
+.upload-row .secondary-action{color:var(--paper);border:1px solid #62666d;background:transparent}
+.upload-row button:disabled{cursor:not-allowed;opacity:.45}
+.evidence-image{display:block;width:100%;height:100%;object-fit:contain;background:#111}
+.line-chart g.pending circle{fill:#bec1c5;stroke:#fff}
+.line-chart g.pending.selected circle{fill:var(--cyan);stroke:var(--ink)}
+.transform-group button.complete:not(.active){border-color:#4ca99f;box-shadow:inset 0 -2px 0 #4ca99f}
+.evidence-empty{margin:18px 0 4px;padding:24px;border:1px dashed #b7babd;border-radius:14px;color:#62666d;line-height:1.55}
+@media(max-width:680px){.upload-actions{justify-content:stretch}.upload-actions button{flex:1}.evidence-empty{padding:18px}}

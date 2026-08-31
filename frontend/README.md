@@ -2,7 +2,8 @@
 
 TikTok TechJam 2026 Track 5 展示前端。模型全称为 **RobustFusion: Robust AI-Generated Image Detection via Multi-Cue Fusion**。页面聚焦交互式图片变换、局部 patch 贡献、16 条件置信度轨迹与分支反事实贡献。
 
-> 当前上传与检测流程是浏览器端交互原型：图片只在本地生成预览，不会上传，也尚未调用真实模型推理服务。
+> 当前页面已接入 `773086` FastAPI：上传图片会执行真实模型推理、渐进式 16 变换扫描，
+> 并可生成模型归因图与分支反事实贡献。文件只发送到本机后端。
 
 ## 技术栈
 
@@ -30,10 +31,19 @@ TikTok TechJam 2026 Track 5 展示前端。模型全称为 **RobustFusion: Robus
 
 ## 安装与运行
 
+推荐从仓库根目录运行：
+
+```bash
+./scripts/setup_demo.sh
+./scripts/run_demo.sh
+```
+
+也可单独启动前端：
+
 ```bash
 corepack enable
 pnpm install
-pnpm dev
+NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000 pnpm dev
 ```
 
 开发服务器启动后访问：
@@ -64,18 +74,13 @@ pnpm lint
 - `vite.config.ts`：Vinext、Sites 与 Cloudflare 构建配置
 - `.openai/hosting.json`：Sites 部署项目配置
 
-## 接入真实模型
+## 后端契约
 
-将 `app/page.tsx` 中的 `onFile` 演示逻辑替换为真实推理请求。推荐接口接收图片文件并返回：
+- `GET /api/health`：连通性与设备状态
+- `GET /api/v1/transforms`：后端定义的 16 项变换目录
+- `POST /api/v1/predict`：当前变换同步推理并创建后台扫描
+- `GET /api/v1/transform-scans/{scan_id}`：渐进式扫描轮询
+- `POST /api/v1/analyses`：创建真实解释任务
+- `GET /api/v1/analyses/{job_id}`：解释任务轮询
 
-```json
-{
-  "pred": 0.978,
-  "label": "ai_generated",
-  "signals": {
-    "frequency_artifacts": "high",
-    "semantic_consistency": "medium",
-    "transformation_resilience": "pass"
-  }
-}
-```
+完整字段见 [`../773086/BACKEND_API.md`](../773086/BACKEND_API.md)。
