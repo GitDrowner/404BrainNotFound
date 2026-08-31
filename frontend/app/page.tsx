@@ -97,6 +97,14 @@ const branchLabels: Record<string, string> = {
   native_tiles: 'Native tiles',
 };
 
+const teamMembers = [
+  { name: 'Steven Cai', image: '/team/steven-cai.png', position: 'center 32%' },
+  { name: 'Xiyan Huang', image: '/team/xiyan-huang.jpg', position: 'center 28%' },
+  { name: 'Wenqing Yan', image: '/team/wenqing-yan.jpg', position: 'center 28%' },
+  { name: 'Yijun Li', image: '/team/yijun-li.jpg', position: 'center 26%' },
+  { name: 'Mingjun Mao', image: '/team/mingjun-mao.jpg', position: 'center 24%' },
+];
+
 const wait = (milliseconds: number) => new Promise((resolve) => window.setTimeout(resolve, milliseconds));
 
 function apiUrl(pathOrUrl: string) {
@@ -422,6 +430,8 @@ export default function Home() {
     </section>
 
     <section className="transform-table section-pad"><div className="section-heading"><div><span className="section-kicker">03 / TEST CONTRACT</span><h2>The exact image<br/>processing suite.</h2></div><p>These controls use the backend’s audited transform IDs and deterministic processing contract.</p></div><div className="table-scroll"><table><thead><tr><th>Transform</th><th>Parameters</th><th>Real-world analog</th></tr></thead><tbody><tr><td>JPEG compression</td><td>quality = 90, 70, 50, 30</td><td>Social-media re-encode, messaging</td></tr><tr><td>Gaussian blur</td><td>kernel σ = 0.5, 1.0, 2.0</td><td>Out-of-focus</td></tr><tr><td>Resize</td><td>scale 0.5× / 0.25× then upscale</td><td>Thumbnail generation</td></tr><tr><td>Gaussian noise</td><td>σ = 0.02, 0.05, 0.10</td><td>Low-light sensor noise</td></tr><tr><td>Color jitter</td><td>brightness / contrast / saturation ±20%</td><td>Filter apps, auto-enhance</td></tr><tr><td>Center crop</td><td>crop 80%</td><td>Profile-picture cropping, framing</td></tr></tbody></table></div></section>
+
+    <section className="team section-pad" aria-labelledby="team-heading"><div className="team-heading"><span className="section-kicker">04 / TEAM</span><h2 id="team-heading">404 Brain Not Found</h2><p>Five contributors, one robust detector.</p></div><div className="team-grid">{teamMembers.map((member, index) => <article className="team-member" key={member.name}><div className="team-avatar-shell"><img src={member.image} alt={`${member.name} portrait`} style={{ objectPosition: member.position }}/><span>{String(index + 1).padStart(2, '0')}</span></div><h3>{member.name}</h3></article>)}</div></section>
 
     <section className="closing"><div className="closing-mark">R</div><p>404 BRAIN NOT FOUND · TECHJAM 2026</p><h2>RobustFusion keeps<br/><em>synthetic traces visible.</em></h2><a href="#demo">Run the detector ↑</a></section><footer><a className="brand" href="#top"><span className="brand-mark">R</span><span>ROBUSTFUSION</span></a><span>Robust AI-Generated Image Detection via Multi-Cue Fusion</span><span>Calibrated local inference · Job 773086</span></footer>
   </main>;
