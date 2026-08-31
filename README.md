@@ -1,10 +1,9 @@
 # RobustFusion
 
-
+> [!TIP]
 > **Robust Detection of AI-Generated Images Under Real-World Transformations**
 
 ![Framework](assets/fig/framework-1.png)
-
 
 ---
 
@@ -12,23 +11,23 @@ A multi-evidence AI-generated content (AIGC) detector developed for TikTok TechJ
 
 ## Table of Contents
 
-- [🚀 Quick Start](#quick-start)
-- [📁 Project Structure](#project-structure)
-- [🏗️ Architecture](#architecture)
+- [🚀 Quick Start](#-quick-start)
+- [📁 Project Structure](#-project-structure)
+- [🏗️ Architecture](#-architecture)
   - [Four Evidence Branches](#four-evidence-branches)
   - [Joint Fusion](#joint-fusion)
   - [Training Objectives](#training-objectives)
   - [Parameters](#parameters)
   - [Explanation Layer](#explanation-layer-inference-only)
-- [📊 Performance](#performance)
-- [✨ Key Features](#key-features)
-- [🛠️ Development](#development)
+- [📊 Performance](#-performance)
+- [✨ Key Features](#-key-features)
+- [🛠️ Development](#-development)
   - [Model Training](#model-training)
   - [Frontend Development](#frontend-development)
   - [API Endpoints](#api-endpoints)
-- [🧰 Technical Stack](#technical-stack)
-- [👥 Team](#team)
-- [📜 License](#license)
+- [🧰 Technical Stack](#-technical-stack)
+- [👥 Team](#-team)
+- [📜 License](#-license)
 
 ---
 
