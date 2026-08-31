@@ -19,6 +19,7 @@ DINOv2 and SigLIP backbone weights are fetched by `timm` on first use.
 
 `checkpoint/calibration_fp32_original.json` is the original Platt calibrator and conservative
 operating threshold emitted by the training pipeline. `checkpoint/calibration_balanced.json` keeps
-the same temperature and bias but uses the calibration-only class-balanced operating threshold
-`0.2815194250`, which is the threshold used by the demo and report. No external-test labels were
-used to derive it.
+the same temperature and bias but uses the calibration-only class-balanced reference threshold
+`0.2815194250`. The demo now loads separate provisional per-transform operating points from
+`checkpoint/transform_thresholds_aligned_640.json`; those values were fitted post hoc on a
+640-image internal-test subset and therefore are explicitly test-derived.

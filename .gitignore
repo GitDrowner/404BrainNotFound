@@ -10,5 +10,6 @@ data/
 outputs/
 logs/
 explanations/
+runtime_results/
 *.tar.gz
 *.zip

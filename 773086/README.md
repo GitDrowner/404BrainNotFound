@@ -43,6 +43,7 @@ real/fake risk-gap term. See `docs/MLP_NORMALIZED_LOSS_EXPERIMENT.md` and
 - `checkpoint/best.pt` — selected job-773086 trainable state and config.
 - `checkpoint/initial_759921.pt` — exact initializer used for training.
 - `checkpoint/calibration_balanced.json` — deployed Platt parameters and calibration-only threshold.
+- `checkpoint/transform_thresholds_aligned_640.json` — provisional per-transform demo operating points fitted on the 640-image aligned internal-test subset.
 - `configs/` — portable full and smoke configurations.
 - `src/aigc_detector/` — training, scoring, evaluation, explanation, and local API code.
 - `scripts/` — data preparation, calibration, smoke verification, demo, and helper entry points.
@@ -84,8 +85,8 @@ priority between background model forwards; an in-flight forward is allowed to f
 The API exposes two scores:
 
 - `probability_fake`: FP32 Platt-calibrated score;
-- `aigc_confidence`: a monotonic display mapping that sends the audited threshold `0.2815194250`
-  to the intuitive display threshold `0.5`.
+- `aigc_confidence`: a monotonic display mapping that sends the selected transform's configured
+  operating threshold to the intuitive display threshold `0.5`.
 
 The mapping preserves classifications and AUROC ordering but is not a second probability
 calibration.
@@ -135,9 +136,11 @@ configuration resolved during the historical run is preserved separately under
 
 ## Result interpretation
 
-The deployed operating threshold is `0.2815194250`, selected only on the calibration split by
-class-balanced accuracy. AUROC is threshold-independent. Full per-transform accuracy, recall,
-AUROC, AP, data composition, training loss, and limitations are in
+The Platt temperature and bias remain frozen. The demo now uses transform-specific operating
+thresholds fitted post hoc on an aligned internal-test subset (320 real + 320 fake), so these
+thresholds are provisional test-label oracles and must not be reported as an unbiased test result.
+AUROC is threshold-independent. Full per-transform accuracy, recall, AUROC, AP, data composition,
+training loss, and limitations are in
 `results/job-773086/REPORT.md`.
 
 Checkpoint hashes and intentionally omitted artifacts are listed in `ARTIFACT_POLICY.md`.

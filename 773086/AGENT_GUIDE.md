@@ -19,9 +19,11 @@ Haar wavelet.
 
 ## Confidence semantics
 
-`probability_fake` is the FP32 Platt-calibrated score. The demo's `aigc_confidence` is a strictly
-monotonic, piecewise-linear display mapping that sends the audited threshold `0.2815194250` to
-`0.5`. It preserves decisions and AUROC ordering but is not a second probability calibration.
+`probability_fake` is the FP32 Platt-calibrated score. The demo selects one provisional operating
+threshold per transform from `checkpoint/transform_thresholds_aligned_640.json` and maps that
+threshold to `0.5`. The mapping preserves decisions and within-transform AUROC ordering but is not
+a second probability calibration. These thresholds are post-hoc 640-image test oracles, not unbiased
+held-out results; the Platt temperature/bias remain unchanged.
 
 ## Progressive transform API
 
@@ -33,13 +35,14 @@ monotonic, piecewise-linear display mapping that sends the audited threshold `0.
 - The background scan is opportunistic. A newly waiting detection is scheduled before the next
   background transform, but an already-running model forward is not preempted.
 - Gaussian noise is deterministically seeded by image hash and transform ID for reproducibility.
-- This scheduling change does not alter model architecture, checkpoint, calibration, threshold,
-  preprocessing definitions, or confidence semantics.
+- This scheduling and threshold-policy change does not alter model architecture, checkpoint,
+  Platt temperature/bias, preprocessing definitions, or confidence semantics.
 
 ## Key files
 
 - `checkpoint/best.pt`: frozen job-773086 trainable state.
 - `checkpoint/calibration_balanced.json`: deployed calibration and operating point.
+- `checkpoint/transform_thresholds_aligned_640.json`: provisional per-transform demo thresholds.
 - `src/aigc_detector/losses.py`: shared normalized MLP loss controller.
 - `configs/`: portable training and smoke configurations.
 - `results/job-773086/REPORT.md`: statistical report and limitations.

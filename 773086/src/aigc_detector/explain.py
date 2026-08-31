@@ -273,11 +273,15 @@ def generate_explanation(
     with Image.open(args.image) as opened:
         image = opened.convert("RGB").copy()
     temperature, bias = calibration_values(args.calibration)
+    explicit_threshold = getattr(args, "decision_threshold", None)
     decision_threshold = (
-        float(json.loads(args.calibration.read_text()).get("threshold", 0.5))
+        float(explicit_threshold)
+        if explicit_threshold is not None
+        else float(json.loads(args.calibration.read_text()).get("threshold", 0.5))
         if args.calibration
         else 0.5
     )
+    transform_thresholds = getattr(args, "transform_thresholds", None) or {}
     base_rows, base_outputs = score_images(
         model, [image], config, device, temperature, bias, 1, decision_threshold
     )
@@ -390,6 +394,17 @@ def generate_explanation(
         decision_threshold,
     )
     for row, score in zip(transforms, transform_scores):
+        transform_threshold = float(
+            transform_thresholds.get(row["variant"], decision_threshold)
+        )
+        score["aigc_confidence"] = linearize_operating_point(
+            score["probability_fake"], transform_threshold
+        )
+        score["label_at_display_threshold"] = (
+            "aigc" if score["aigc_confidence"] >= 0.5 else "real"
+        )
+        score["display_threshold"] = 0.5
+        score["calibrated_probability_threshold"] = transform_threshold
         row.update(score)
 
     branches = branch_counterfactuals(

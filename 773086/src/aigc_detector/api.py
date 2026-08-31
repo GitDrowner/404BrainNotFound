@@ -31,11 +31,26 @@ from .model import TraceDetector
 PACKAGE_ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_CHECKPOINT = PACKAGE_ROOT / "checkpoint" / "best.pt"
 DEFAULT_CALIBRATION = PACKAGE_ROOT / "checkpoint" / "calibration_balanced.json"
+DEFAULT_TRANSFORM_THRESHOLDS = (
+    PACKAGE_ROOT / "checkpoint" / "transform_thresholds_aligned_640.json"
+)
 DEFAULT_RESULTS = PACKAGE_ROOT / "runtime_results"
 DEFAULT_FRONTEND = PACKAGE_ROOT / "demos-v2"
 MAX_UPLOAD_BYTES = 20 * 1024 * 1024
 MAX_IMAGE_PIXELS = 25_000_000
 SUPPORTED_FORMATS = {"JPEG": ".jpg", "PNG": ".png", "WEBP": ".webp"}
+INPUT_PROTOCOL_ID = "rgb_256x256_bicubic_jpeg_q95_420"
+INPUT_PROTOCOL = {
+    "id": INPUT_PROTOCOL_ID,
+    "color_mode": "RGB",
+    "width": 256,
+    "height": 256,
+    "resize": "Pillow BICUBIC",
+    "encoding": "JPEG",
+    "jpeg_quality": 95,
+    "jpeg_subsampling": "4:2:0",
+    "order": "align_then_selected_transform_then_model",
+}
 
 
 def transform_catalog() -> list[dict]:
@@ -143,10 +158,33 @@ def validate_image(payload: bytes) -> tuple[Image.Image, str]:
     return image, SUPPORTED_FORMATS[image_format]
 
 
+def aligned_inference_payload(image: Image.Image) -> bytes:
+    """Apply the frozen anti-shortcut alignment used by 773086 validation."""
+    aligned = image.convert("RGB").resize((256, 256), Image.Resampling.BICUBIC)
+    buffer = io.BytesIO()
+    aligned.save(
+        buffer,
+        format="JPEG",
+        quality=95,
+        subsampling=2,
+        optimize=False,
+        progressive=False,
+    )
+    return buffer.getvalue()
+
+
+def align_for_inference(image: Image.Image) -> Image.Image:
+    payload = aligned_inference_payload(image)
+    with Image.open(io.BytesIO(payload)) as opened:
+        opened.load()
+        return opened.convert("RGB").copy()
+
+
 @dataclass(frozen=True)
 class RuntimeSettings:
     checkpoint: Path = DEFAULT_CHECKPOINT
     calibration: Path = DEFAULT_CALIBRATION
+    transform_thresholds: Path = DEFAULT_TRANSFORM_THRESHOLDS
     results_root: Path = DEFAULT_RESULTS
     frontend_root: Path = DEFAULT_FRONTEND
     device: str = "auto"
@@ -156,6 +194,9 @@ class RuntimeSettings:
         return cls(
             checkpoint=Path(os.environ.get("AIGC_CHECKPOINT", DEFAULT_CHECKPOINT)),
             calibration=Path(os.environ.get("AIGC_CALIBRATION", DEFAULT_CALIBRATION)),
+            transform_thresholds=Path(
+                os.environ.get("AIGC_TRANSFORM_THRESHOLDS", DEFAULT_TRANSFORM_THRESHOLDS)
+            ),
             results_root=Path(os.environ.get("AIGC_RESULTS_ROOT", DEFAULT_RESULTS)),
             frontend_root=Path(os.environ.get("AIGC_FRONTEND_ROOT", DEFAULT_FRONTEND)),
             device=os.environ.get("AIGC_DEVICE", "auto"),
@@ -190,12 +231,43 @@ class LocalModelRuntime:
             raise RuntimeError("Calibration temperature must be positive")
         if not 0.0 <= float(self.calibration["threshold"]) <= 1.0:
             raise RuntimeError("Calibration threshold must be in [0, 1]")
+        self.transform_thresholds_sha256 = sha256(self.settings.transform_thresholds)
+        self.transform_thresholds_payload = json.loads(
+            self.settings.transform_thresholds.read_text()
+        )
+        if self.transform_thresholds_payload.get("input_protocol") != INPUT_PROTOCOL_ID:
+            raise RuntimeError("Transform thresholds use a different input protocol")
+        thresholds = self.transform_thresholds_payload.get("thresholds", {})
+        missing_thresholds = set(TRANSFORMS_BY_ID).difference(thresholds)
+        extra_thresholds = set(thresholds).difference(TRANSFORMS_BY_ID)
+        if missing_thresholds or extra_thresholds:
+            raise RuntimeError(
+                "Transform threshold IDs do not match the transform catalog: "
+                f"missing={sorted(missing_thresholds)}, extra={sorted(extra_thresholds)}"
+            )
+        self.transform_thresholds = {
+            transform_id: float(value) for transform_id, value in thresholds.items()
+        }
+        invalid_thresholds = {
+            key: value
+            for key, value in self.transform_thresholds.items()
+            if not 0.0 < value < 1.0
+        }
+        if invalid_thresholds:
+            raise RuntimeError(f"Transform thresholds must be in (0, 1): {invalid_thresholds}")
         self.jobs: dict[str, dict] = {}
         self.transform_scans: dict[str, dict] = {}
 
     @property
     def decision_threshold(self) -> float:
+        """Return the historical calibration-only reference threshold."""
         return float(self.calibration["threshold"])
+
+    def threshold_for_transform(self, transform_id: str) -> float:
+        try:
+            return self.transform_thresholds[transform_id]
+        except KeyError as error:
+            raise ValueError(f"No threshold configured for transform '{transform_id}'") from error
 
     @property
     def loaded(self) -> bool:
@@ -254,11 +326,21 @@ class LocalModelRuntime:
             "calibration_sha256": self.calibration_sha256,
             "calibration_temperature": float(self.calibration["temperature"]),
             "calibration_bias": float(self.calibration["bias"]),
-            "calibrated_probability_threshold": self.decision_threshold,
+            "calibrated_probability_threshold": self.threshold_for_transform("clean"),
+            "default_threshold_transform": "clean",
+            "reference_calibration_threshold": self.decision_threshold,
+            "threshold_strategy": "per_transform_aligned_640_test_oracle",
+            "transform_thresholds": copy.deepcopy(self.transform_thresholds),
+            "transform_thresholds_config": str(self.settings.transform_thresholds),
+            "transform_thresholds_sha256": self.transform_thresholds_sha256,
+            "transform_thresholds_statistical_status": self.transform_thresholds_payload.get(
+                "statistical_status"
+            ),
             "decision_threshold": 0.5,
             "confidence_mapping": (
                 "p<=t: 0.5*p/t; p>t: 0.5+0.5*(p-t)/(1-t)"
             ),
+            "input_protocol": copy.deepcopy(INPUT_PROTOCOL),
             "device": str(self.device) if self.device is not None else self.settings.device,
             "loaded": self.loaded,
         }
@@ -275,6 +357,7 @@ class LocalModelRuntime:
         """Score one already transformed image while the inference lock is held."""
         self.ensure_loaded()
         assert self.model is not None and self.config is not None and self.device is not None
+        selected_threshold = self.threshold_for_transform(str(transform["id"]))
         rows, outputs = score_images(
             self.model,
             [transformed],
@@ -283,7 +366,7 @@ class LocalModelRuntime:
             float(self.calibration["temperature"]),
             float(self.calibration["bias"]),
             1,
-            self.decision_threshold,
+            selected_threshold,
         )
         prediction = rows[0]
         model_outputs = outputs[0]
@@ -295,7 +378,8 @@ class LocalModelRuntime:
                     else "real"
                 ),
                 "display_threshold": 0.5,
-                "calibrated_probability_threshold": self.decision_threshold,
+                "calibrated_probability_threshold": selected_threshold,
+                "threshold_source": "per_transform_aligned_640_test_oracle",
                 "confidence_semantics": (
                     "piecewise-linearized FP32 Platt score; probability_fake retains the pre-mapping calibrated value"
                 ),
@@ -307,8 +391,11 @@ class LocalModelRuntime:
                 "sha256": image_digest,
                 "width": original.width,
                 "height": original.height,
+                "inference_base_width": INPUT_PROTOCOL["width"],
+                "inference_base_height": INPUT_PROTOCOL["height"],
                 "transformed_width": transformed.width,
                 "transformed_height": transformed.height,
+                "input_protocol_id": INPUT_PROTOCOL_ID,
             },
             "transform": copy.deepcopy(transform),
             **({"model": self.model_info()} if include_model else {}),
@@ -331,7 +418,8 @@ class LocalModelRuntime:
             self._foreground_waiting += 1
             self._foreground_condition.notify_all()
         try:
-            transformed = apply_transform(image, transform, image_digest)
+            inference_base = align_for_inference(image)
+            transformed = apply_transform(inference_base, transform, image_digest)
             with self._inference_lock:
                 return self._score_transformed(
                     transformed,
@@ -355,7 +443,8 @@ class LocalModelRuntime:
         image_digest: str,
         transform: dict,
     ) -> dict:
-        transformed = apply_transform(image, transform, image_digest)
+        inference_base = align_for_inference(image)
+        transformed = apply_transform(inference_base, transform, image_digest)
         while True:
             with self._foreground_condition:
                 while self._foreground_waiting:
@@ -483,8 +572,9 @@ class LocalModelRuntime:
         job_id = uuid.uuid4().hex
         job_root = self.settings.results_root / job_id
         job_root.mkdir(parents=True, exist_ok=False)
-        input_path = job_root / f"upload{extension}"
-        input_path.write_bytes(payload)
+        original, _original_extension = validate_image(payload)
+        input_path = job_root / "upload.jpg"
+        input_path.write_bytes(aligned_inference_payload(original))
         profile = (
             {"grid": 4, "refine_top_k": 3, "refine_grid": 2, "batch_size": 4}
             if mode == "fast"
@@ -524,6 +614,8 @@ class LocalModelRuntime:
                 image=input_path,
                 output=output,
                 calibration=self.settings.calibration,
+                decision_threshold=self.threshold_for_transform("clean"),
+                transform_thresholds=copy.deepcopy(self.transform_thresholds),
                 occlusion=occlusion,
                 device=str(self.device),
                 **profile,
@@ -605,7 +697,7 @@ def create_app(
 
     app = FastAPI(
         title="773086 Calibrated Local AIGC Explainability API",
-        version="1.1.0",
+        version="1.2.0",
         description=(
             "Local-only foreground-priority transform confidence and counterfactual explanation service."
         ),
@@ -652,10 +744,15 @@ def create_app(
 
     @app.get("/api/v1/transforms")
     def transforms() -> dict:
+        catalog = copy.deepcopy(TRANSFORM_CATALOG)
+        threshold_lookup = getattr(runtime, "threshold_for_transform", None)
+        if callable(threshold_lookup):
+            for item in catalog:
+                item["calibrated_probability_threshold"] = threshold_lookup(item["id"])
         return {
             "default": "clean",
             "count": len(TRANSFORM_CATALOG),
-            "transforms": copy.deepcopy(TRANSFORM_CATALOG),
+            "transforms": catalog,
         }
 
     @app.post("/api/v1/predict")

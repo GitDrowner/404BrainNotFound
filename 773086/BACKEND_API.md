@@ -27,13 +27,15 @@ without editing code:
 ```bash
 AIGC_CHECKPOINT=/absolute/path/best.pt \
 AIGC_CALIBRATION=/absolute/path/calibration_fp32.json \
+AIGC_TRANSFORM_THRESHOLDS=/absolute/path/transform_thresholds.json \
 AIGC_RESULTS_ROOT=/absolute/path/results \
 PYTHONPATH=src python scripts/serve_demo.py --device mps
 ```
 
-The checkpoint and calibration must be changed together. By default both resolve inside this
-package as `checkpoint/best.pt` and the audited `checkpoint/calibration_balanced.json`. The decision threshold is always read from that JSON;
-there is no independent display-threshold override.
+The checkpoint and calibration must be changed together. By default they resolve inside this
+package. Per-transform demo operating points are loaded separately from
+`checkpoint/transform_thresholds_aligned_640.json`; this separation preserves the frozen Platt
+temperature/bias and makes the test-derived threshold policy explicit and reversible.
 
 ## API
 
@@ -66,22 +68,24 @@ curl -F file=@/path/image.png -F transform=jpeg_q70 \
 ```
 
 The response includes raw logit, FP32 Platt-calibrated logit and `probability_fake`, image
-hash/dimensions, and the decision at the calibration file's threshold. The default values are
-temperature `3.1648788452`, bias `-2.4065542221`, and threshold `0.2815194250`. The temperature and
-bias are the frozen job 773086 Platt calibrator; the threshold maximizes class-balanced accuracy on
-the same independent 4,700-image calibration set and uses no external test labels.
+hash/dimensions, and the decision at the selected transform's threshold. Temperature
+`3.1648788452` and bias `-2.4065542221` remain the frozen job 773086 Platt calibrator. The 16
+operating thresholds are provisional post-hoc oracles fitted on a unified-input 640-image subset of
+the internal test set (320 COCO real + 320 MidJourney fake); therefore threshold-dependent numbers
+from that same subset are not an unbiased held-out test result.
 
 For presentation, the response also includes `aigc_confidence`, a strictly increasing piecewise
-linear remapping that sends calibrated probability `0 -> 0`, threshold `0.2815194250 -> 0.5`, and
-`1 -> 1`:
+linear remapping that sends calibrated probability `0 -> 0`, the selected transform threshold to
+`0.5`, and `1 -> 1`:
 
 `p <= t: confidence = 0.5 * p / t`
 
 `p > t: confidence = 0.5 + 0.5 * (p - t) / (1 - t)`
 
 The displayed decision is `aigc_confidence >= 0.5`. This is exactly equivalent to
-`probability_fake >= 0.2815194250` and preserves AUROC ordering. `aigc_confidence` is an intuitive
-operating score, not an additional probability calibration; `probability_fake` retains the original
+`probability_fake >= threshold_for_selected_transform` and preserves AUROC ordering within that
+transform. `aigc_confidence` is an intuitive operating score, not an additional probability
+calibration; `probability_fake` retains the original
 Platt value for audit.
 
 The response also contains `selected_transform`, `scan_id`, and `scan_status_url`.

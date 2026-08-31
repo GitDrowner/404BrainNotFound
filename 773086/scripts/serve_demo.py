@@ -12,9 +12,15 @@ def main() -> None:
     parser.add_argument("--host", default="127.0.0.1")
     parser.add_argument("--port", type=int, default=8000)
     parser.add_argument("--device", choices=("auto", "cpu", "cuda", "mps"), default="auto")
+    parser.add_argument(
+        "--transform-thresholds",
+        help="Optional path to the per-transform operating-threshold JSON.",
+    )
     parser.add_argument("--reload", action="store_true")
     args = parser.parse_args()
     os.environ["AIGC_DEVICE"] = args.device
+    if args.transform_thresholds:
+        os.environ["AIGC_TRANSFORM_THRESHOLDS"] = args.transform_thresholds
     uvicorn.run(
         "aigc_detector.api:app",
         host=args.host,
