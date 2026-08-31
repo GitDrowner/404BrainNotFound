@@ -32,7 +32,7 @@ A multi-evidence AI-generated content (AIGC) detector developed for TikTok TechJ
 
 ---
 
-## 🚀 Quick Start
+# 🚀 Quick Start
 
 ```bash
 # Clone the repository
