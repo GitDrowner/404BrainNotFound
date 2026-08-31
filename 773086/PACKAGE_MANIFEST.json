@@ -14,8 +14,8 @@
   "files": [
     {
       "path": "AGENT_GUIDE.md",
-      "bytes": 1805,
-      "sha256": "b2ec913b88ce009de319ed45a063c5857cfe1ae0a22e2b7116137ac9fedab114"
+      "bytes": 2653,
+      "sha256": "77d6a088bf09147eeef8751099447abb729919b66a90990619abea9c50578667"
     },
     {
       "path": "ARTIFACT_POLICY.md",
@@ -24,8 +24,8 @@
     },
     {
       "path": "BACKEND_API.md",
-      "bytes": 4244,
-      "sha256": "f45c85d7ff0bc3ef1384781087c4f7261364d339675dbcdf4974ab3c5a4b755f"
+      "bytes": 5963,
+      "sha256": "fd91b5be70c9aff443975cb829580c8f30c3439e78acdeafaf7d943cf9e3309e"
     },
     {
       "path": "MODEL_ARCHITECTURE.md",
@@ -49,8 +49,8 @@
     },
     {
       "path": "README.md",
-      "bytes": 5549,
-      "sha256": "74473d2a36dc14f520484ac76beb288feea4fa400123043f830d18b6d362a7ff"
+      "bytes": 6001,
+      "sha256": "184ea624684ac883ae2989d8d5b4063c71cc646ffd9984b1454552a865c2fee9"
     },
     {
       "path": "checkpoint/best.pt",
@@ -84,8 +84,8 @@
     },
     {
       "path": "demos-v2/index.html",
-      "bytes": 11574,
-      "sha256": "1f663461b64e47b40991af1021b5f67efad2298363e0c6bd4b431ad356be3292"
+      "bytes": 14737,
+      "sha256": "4c2de5d230563309958ff8678c8a51b5615e5e875fd382fb06aa97b8e12e4b45"
     },
     {
       "path": "docs/ABLATION_773086_PLAN.md",
@@ -239,8 +239,8 @@
     },
     {
       "path": "src/aigc_detector/api.py",
-      "bytes": 17241,
-      "sha256": "ae8856d478fdacf263629cd8314f8c32a7c0ce19f0ab6247e0241a6932086fe8"
+      "bytes": 28228,
+      "sha256": "81699aa22f93764d3bc6efe7a9a00dbaf67f969a4902f7617fcde63922995b8d"
     },
     {
       "path": "src/aigc_detector/augmentations.py",
@@ -304,8 +304,8 @@
     },
     {
       "path": "tests/test_api.py",
-      "bytes": 3892,
-      "sha256": "543d7a9daeb8b43fceb2c828ba0622b0a964fbd7d80027e5a73b500b101ace66"
+      "bytes": 9818,
+      "sha256": "4db8548cf7e9f876b82dfdf84592d8d01cb7074a1b82e3abaf45f261888fe243"
     },
     {
       "path": "tests/test_explainability.py",

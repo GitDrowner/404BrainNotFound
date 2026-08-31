@@ -4,7 +4,10 @@ The backend serves both `demos-v2` and the frozen job 773086 model from one loca
 FastAPI process. Job 773086 retains the 759921 detector architecture and adds the
 MLP-normalized auxiliary-loss training. The checkpoint is loaded lazily once and retained in memory.
 Full explanation jobs are serialized because the wavelet-only counterfactual
-uses a temporary inference hook on the shared fusion module.
+uses a temporary inference hook on the shared fusion module. Interactive transform
+detections use a separate foreground-priority path: the selected transform returns
+first, then the server evaluates the remaining competition transforms one at a time
+whenever no newer detection request is waiting.
 
 ## Start
 
@@ -44,13 +47,22 @@ depth.
 Returns checkpoint SHA-256, backbone names, source epoch, device, and confidence
 semantics.
 
+### `GET /api/v1/transforms`
+
+Returns the stable 16-item competition transform catalog in evaluation order:
+clean, four JPEG levels, three blur levels, two resize levels, three Gaussian-noise
+levels, two color-jitter levels, and one center crop.
+
 ### `POST /api/v1/predict`
 
-Multipart form field: `file`. Accepted formats are JPEG, PNG, and WEBP, up to
-20 MiB and 25 megapixels.
+Multipart form fields:
+
+- `file`: JPEG, PNG, or WEBP, up to 20 MiB and 25 megapixels;
+- `transform`: optional transform ID from `GET /api/v1/transforms`; defaults to `clean`.
 
 ```bash
-curl -F file=@/path/image.png http://127.0.0.1:8000/api/v1/predict
+curl -F file=@/path/image.png -F transform=jpeg_q70 \
+  http://127.0.0.1:8000/api/v1/predict
 ```
 
 The response includes raw logit, FP32 Platt-calibrated logit and `probability_fake`, image
@@ -71,6 +83,20 @@ The displayed decision is `aigc_confidence >= 0.5`. This is exactly equivalent t
 `probability_fake >= 0.2815194250` and preserves AUROC ordering. `aigc_confidence` is an intuitive
 operating score, not an additional probability calibration; `probability_fake` retains the original
 Platt value for audit.
+
+The response also contains `selected_transform`, `scan_id`, and `scan_status_url`.
+The selected transform is evaluated synchronously and appears as the first completed
+entry in the scan. The other 15 variants are filled progressively in the background.
+
+Gaussian-noise variants are seeded from the uploaded image hash and transform ID, so
+the same image and transform produce the same pixels and score across repeated runs.
+
+### `GET /api/v1/transform-scans/{scan_id}`
+
+Returns the progressive scan state and all results completed so far. Poll until
+`status` is `completed` or `failed`. Each result records the exact operation,
+calibrated score, display confidence, threshold, and decision. This endpoint does not
+mix results from different uploads.
 
 ### `POST /api/v1/analyses`
 
@@ -103,8 +129,13 @@ Static assets are served below `/results/{job_id}/`.
 
 - Uploaded files and results stay below `runtime_results/` by default.
 - Model parameters are never modified; every request runs in inference mode.
-- Explanation jobs run one at a time. Fast prediction waits if a full explanation
-  currently owns the model lock.
+- Transform scans run on one background worker and preserve catalog order after the
+  selected foreground transform.
+- New foreground detections take priority between background transform forwards. A
+  running model forward is not interrupted, so a new request waits at most for that
+  forward before it becomes next in line.
+- Explanation jobs run one at a time. Fast prediction still waits if a full explanation
+  currently owns the model lock because explanations temporarily hook the shared model.
 - Jobs are process-local and are not restored after a server restart. Generated
   artifacts remain on disk.
 - The API is a local demo service, not an internet-facing hardened deployment.

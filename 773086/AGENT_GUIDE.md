@@ -23,6 +23,19 @@ Haar wavelet.
 monotonic, piecewise-linear display mapping that sends the audited threshold `0.2815194250` to
 `0.5`. It preserves decisions and AUROC ordering but is not a second probability calibration.
 
+## Progressive transform API
+
+- Obtain the exact transform IDs from `GET /api/v1/transforms`; do not invent aliases.
+- `POST /api/v1/predict` accepts `file` and optional `transform`. It synchronously scores the
+  selected variant and returns a `scan_id` plus `scan_status_url`.
+- Poll `GET /api/v1/transform-scans/{scan_id}` for the remaining variants. Results belong only to
+  that upload and are never pooled across images.
+- The background scan is opportunistic. A newly waiting detection is scheduled before the next
+  background transform, but an already-running model forward is not preempted.
+- Gaussian noise is deterministically seeded by image hash and transform ID for reproducibility.
+- This scheduling change does not alter model architecture, checkpoint, calibration, threshold,
+  preprocessing definitions, or confidence semantics.
+
 ## Key files
 
 - `checkpoint/best.pt`: frozen job-773086 trainable state.
