@@ -182,6 +182,58 @@ pnpm install
 NEXT_PUBLIC_API_BASE_URL=http://127.0.0.1:8000 pnpm dev
 ```
 
+### Batch Inference
+
+```bash
+cd 404BrainNotFound
+
+# Single image (clean only)
+python scripts/batch_inference.py --input path/to/image.jpg
+
+# Directory of images (clean only)
+python scripts/batch_inference.py --input path/to/images/
+
+# Run all 16 transforms
+python scripts/batch_inference.py --input path/to/images/ --transforms all --output results.json
+
+# Specify transforms
+python scripts/batch_inference.py --input path/to/images/ \
+  --transforms clean jpeg_q90 blur_sigma1 noise_sigma0.05 \
+  --output results.json
+
+# CPU only, 8 workers
+python scripts/batch_inference.py --input path/to/images/ \
+  --device cpu --workers 8 --output results.json
+```
+
+Output JSON structure:
+```json
+{
+  "metadata": {
+    "checkpoint": "...",
+    "calibration_threshold": 0.2815,
+    "device": "cuda",
+    "transforms": ["clean", "jpeg_q90"],
+    "image_count": 100,
+    "elapsed_seconds": 45.2,
+    "throughput_per_second": 2.21
+  },
+  "results": [
+    {
+      "summary": {
+        "image_path": "...",
+        "mean_probability_fake": 0.234,
+        "decision_at_threshold": "real"
+      },
+      "per_transform": [
+        {"transform": "clean", "probability_fake": 0.221, "decision": "real", ...},
+        {"transform": "jpeg_q90", "probability_fake": 0.247, "decision": "real", ...}
+      ]
+    }
+  ]
+}
+```
+
 ### API Endpoints
 
 | Endpoint | Method | Description |
