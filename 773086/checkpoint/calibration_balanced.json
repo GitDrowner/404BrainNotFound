@@ -1,0 +1,16 @@
+{
+  "format": "aigc_platt_v1_balanced_operating_point",
+  "fit_role": "calibration_only",
+  "source_job": 773086,
+  "source_calibration": "outputs/remote-773086/extracted/outputs/hybrid_759921_mlp_controller_h100/calibration_fp32.json",
+  "source_calibration_sha256": "dfdad977f68189a01b0826605a10f61b2f7f3721de091efcc92b289889a8c649",
+  "samples": 4700,
+  "temperature": 3.1648788452148438,
+  "bias": -2.4065542221069336,
+  "threshold": 0.2815194250040655,
+  "threshold_method": "maximize_class_balanced_accuracy_on_calibration_only",
+  "calibration_real_recall": 0.7651063829787234,
+  "calibration_fake_recall": 0.965531914893617,
+  "calibration_balanced_accuracy": 0.8653191489361702,
+  "external_test_labels_used": false
+}
