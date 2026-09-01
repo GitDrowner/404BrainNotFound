@@ -75,6 +75,12 @@ PYTHONPATH=src python scripts/serve_demo.py --device auto --port 8000
 Open <http://127.0.0.1:8000>. The backend defaults to the included job-773086 checkpoint and
 calibration. See `BACKEND_API.md` for endpoints and environment overrides.
 
+The demo exposes all 16 competition transforms. When the user presses detect, the selected
+transform runs on the foreground path and its result is returned immediately. If no newer
+detection is waiting, one background worker then evaluates the remaining transforms in fixed
+order and the frontend fills the comparison table progressively. New user detections take
+priority between background model forwards; an in-flight forward is allowed to finish.
+
 The API exposes two scores:
 
 - `probability_fake`: FP32 Platt-calibrated score;
