@@ -4,7 +4,6 @@ set -Eeuo pipefail
 PROJECT_ROOT="$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)"
 PYTHON_BIN="${PYTHON_BIN:-python3}"
 VENV_DIR="${PROJECT_ROOT}/.venv"
-REQUIREMENTS_FILE="${PROJECT_ROOT}/773086/requirements.txt"
 
 command -v "${PYTHON_BIN}" >/dev/null 2>&1 || {
   echo "Python was not found. Install Python 3.10-3.12 and retry." >&2
@@ -16,10 +15,6 @@ command -v node >/dev/null 2>&1 || {
 }
 command -v corepack >/dev/null 2>&1 || {
   echo "Corepack was not found. Install a Node.js distribution that includes Corepack." >&2
-  exit 1
-}
-[[ -f "${REQUIREMENTS_FILE}" ]] || {
-  echo "Python requirements file is missing: ${REQUIREMENTS_FILE}" >&2
   exit 1
 }
 
@@ -36,7 +31,7 @@ if [[ ! -x "${VENV_DIR}/bin/python" ]]; then
 fi
 
 "${VENV_DIR}/bin/python" -m pip install --upgrade pip
-"${VENV_DIR}/bin/python" -m pip install -r "${REQUIREMENTS_FILE}"
+"${VENV_DIR}/bin/python" -m pip install -r "${PROJECT_ROOT}/773086/requirements-demo.txt"
 
 (
   cd "${PROJECT_ROOT}/frontend"

@@ -21,21 +21,12 @@ type Prediction = {
   probability_fake: number;
   aigc_confidence: number;
   label_at_display_threshold: 'aigc' | 'real';
-  calibrated_probability_threshold?: number;
-  threshold_source?: string;
 };
 
 type TransformResult = {
   prediction: Prediction;
   transform: { id: string; label: string; operation: string; family?: string; value?: number };
-  image: {
-    sha256: string;
-    width: number;
-    height: number;
-    inference_base_width?: number;
-    inference_base_height?: number;
-    input_protocol_id?: string;
-  };
+  image: { sha256: string; width: number; height: number };
   branches_available?: string[];
 };
 
@@ -98,11 +89,11 @@ const branchLabels: Record<string, string> = {
 };
 
 const teamMembers = [
-  { name: 'Steven Cai', image: '/team/steven-cai.png', position: 'center 32%' },
-  { name: 'Xiyan Huang', image: '/team/xiyan-huang.jpg', position: 'center 28%' },
-  { name: 'Wenqing Yan', image: '/team/wenqing-yan.jpg', position: 'center 28%' },
-  { name: 'Yijun Li', image: '/team/yijun-li.jpg', position: 'center 26%' },
-  { name: 'Mingjun Mao', image: '/team/mingjun-mao.jpg', position: 'center 24%' },
+  { name: 'Steven Cai', image: '/team/steven-cai.png' },
+  { name: 'Xiyan Huang', image: '/team/xiyan-huang.jpg' },
+  { name: 'Wenqing Yan', image: '/team/wenqing-yan.jpg' },
+  { name: 'Yijun Li', image: '/team/yijun-li.jpg' },
+  { name: 'Mingjun Mao', image: '/team/mingjun-mao.jpg' },
 ];
 
 const wait = (milliseconds: number) => new Promise((resolve) => window.setTimeout(resolve, milliseconds));
@@ -215,7 +206,6 @@ export default function Home() {
   const confidence = currentResult?.prediction.aigc_confidence;
   const probabilityFake = currentResult?.prediction.probability_fake;
   const rawLogit = currentResult?.prediction.raw_logit;
-  const probabilityThreshold = currentResult?.prediction.calibrated_probability_threshold;
   const rawLogitText = rawLogit === undefined
     ? '—'
     : `${rawLogit >= 0 ? '+' : ''}${rawLogit.toFixed(4)}`;
@@ -341,18 +331,17 @@ export default function Home() {
       return URL.createObjectURL(file);
     });
     void runPrediction(file, selectedId);
-    void runEvidence(file);
     event.target.value = '';
   }
 
-  async function runEvidence(file: File | null = selectedFile) {
-    if (!file) return;
+  async function runEvidence() {
+    if (!selectedFile) return;
     const token = ++analysisToken.current;
     setEvidenceBusy(true);
     setError('');
     try {
       const form = new FormData();
-      form.append('file', file);
+      form.append('file', selectedFile);
       form.append('mode', 'fast');
       form.append('occlusion', 'blur');
       const response = await fetch(apiUrl('/api/v1/analyses'), { method: 'POST', body: form });
@@ -417,9 +406,9 @@ export default function Home() {
     <section className="hero" id="top"><div className="hero-copy"><div className="eyebrow"><span/> TIKTOK TECHJAM 2026 · TRACK 5</div><h1>Robust evidence.<br/><em>After the edit.</em></h1><p>RobustFusion combines multiple visual cues to detect AI-generated images after compression, blur, resizing, noise, color edits and cropping.</p><div className="hero-actions"><a className="primary-button" href="#demo">Analyze an image ↗</a><a className="text-link" href="#evidence">View robustness evidence ↓</a></div><div className="proof-strip"><div><strong>16</strong><span>Stress conditions</span></div><div><strong>6</strong><span>Transform families</span></div><div><strong>Local</strong><span>Calibrated inference API</span></div></div></div><div className="hero-card"><span>MODEL · JOB 773086</span><strong>RobustFusion</strong><p>DINOv2 global and tile evidence, SigLIP semantics, and Haar-wavelet traces.</p><div><i/> Global cues</div><div><i/> Semantic cues</div><div><i/> Native-detail cues</div></div></section>
 
     <section className="demo section-pad" id="demo"><div className="section-heading"><div><span className="section-kicker">01 / LIVE INFERENCE</span><h2>See what survives<br/>the transformation.</h2></div><div className={`prototype-note backend-${backendState}`}><b>{backendState === 'ready' ? 'INFERENCE API READY' : backendState === 'checking' ? 'CHECKING INFERENCE API' : 'INFERENCE API OFFLINE'}</b><p>{backendState === 'ready' ? 'Choose a JPG, PNG or WEBP. The selected transform returns first; all 16 conditions then fill progressively.' : `Start the backend at ${API_BASE}, then choose an image to retry.`}</p></div></div>
-      <div className={`result-shell ${phase === 'analyzing' || phase === 'scanning' ? 'is-analyzing' : ''}`}><header className="result-header" aria-live="polite"><div><span>AIGC confidence</span><strong>{confidence === undefined ? '—' : confidence.toFixed(4)}</strong></div><p>{probabilityFake === undefined ? 'Awaiting real model output' : `P(fake) ${probabilityFake.toFixed(4)} · threshold ${probabilityThreshold?.toFixed(4) ?? '—'} · raw logit ${rawLogitText}`} · <b>RobustFusion</b> · {active.label}{currentResult?.image.input_protocol_id ? ' · aligned 256×256' : ''}</p><div className={`state-pill ${uncertain || phase === 'error' ? 'uncertain' : ''}`}><i/>{phaseLabel}</div></header>
+      <div className={`result-shell ${phase === 'analyzing' || phase === 'scanning' ? 'is-analyzing' : ''}`}><header className="result-header" aria-live="polite"><div><span>AIGC confidence</span><strong>{confidence === undefined ? '—' : `${(confidence * 100).toFixed(2)}%`}</strong></div><p>{probabilityFake === undefined ? 'Awaiting real model output' : `P(fake) ${probabilityFake.toFixed(4)} · raw logit ${rawLogitText}`} · <b>RobustFusion</b> · {active.label}</p><div className={`state-pill ${uncertain || phase === 'error' ? 'uncertain' : ''}`}><i/>{phaseLabel}</div></header>
         <div className="image-grid"><article className="image-panel"><div className="panel-title"><span>Input after transform</span><small>{fileName}</small></div><div className="canvas-wrap"><canvas ref={sourceCanvas}/><div className="scan-line"/></div></article><article className="image-panel heat-panel"><div className="panel-title evidence-title"><div><span>{evidenceAssets ? evidenceView === 'attribution' ? 'Model attribution overlay' : 'Wavelet contribution overlay' : 'Evidence preview'}</span><small>{evidenceAssets ? 'blue: negative · magenta: positive' : 'Run evidence after detection for model-derived attribution'}</small></div><div className="evidence-tabs" role="tablist" aria-label="Evidence visualization"><button type="button" role="tab" aria-selected={evidenceView === 'attribution'} className={evidenceView === 'attribution' ? 'active' : ''} onClick={() => setEvidenceView('attribution')}>Attribution</button><button type="button" role="tab" aria-selected={evidenceView === 'frequency'} className={evidenceView === 'frequency' ? 'active' : ''} onClick={() => setEvidenceView('frequency')}>Wavelet</button></div></div><div className="canvas-wrap">{evidenceAssets ? <img className="evidence-image" src={evidenceView === 'attribution' ? evidenceAssets.attribution : evidenceAssets.frequency} alt="Model-derived contribution overlay"/> : <canvas ref={evidenceCanvas}/>}<div className="scan-line"/></div></article></div>
-        <div className="upload-row"><div><strong>{active.label}</strong><span>{phase === 'scanning' ? `Robustness scan ${scanProgress.completed}/${scanProgress.total}` : active.realWorld}</span></div><div className="upload-actions"><button type="button" onClick={() => fileInput.current?.click()}>＋ Choose image</button><button type="button" className="secondary-action" disabled={!selectedFile || evidenceBusy} onClick={() => void runEvidence()}>{evidenceBusy ? 'Generating evidence…' : evidenceAssets ? 'Regenerate evidence' : 'Generate evidence'}</button></div><input ref={fileInput} type="file" accept="image/png,image/jpeg,image/webp" hidden onChange={handleFile}/></div>{error && <p className="error-message" role="alert">{error}</p>}
+        <div className="upload-row"><div><strong>{active.label}</strong><span>{phase === 'scanning' ? `Robustness scan ${scanProgress.completed}/${scanProgress.total}` : active.realWorld}</span></div><div className="upload-actions"><button type="button" onClick={() => fileInput.current?.click()}>＋ Choose image</button><button type="button" className="secondary-action" disabled={!selectedFile || evidenceBusy || confidence === undefined} onClick={() => void runEvidence()}>{evidenceBusy ? 'Generating evidence…' : 'Generate evidence'}</button></div><input ref={fileInput} type="file" accept="image/png,image/jpeg,image/webp" hidden onChange={handleFile}/></div>{error && <p className="error-message" role="alert">{error}</p>}
       </div>
       <div className="transform-picker" id="transforms"><div className="picker-head"><div><span>TRANSFORMATION</span><strong>Run a competition stress condition</strong></div><small>Scores come from the calibrated job-773086 backend.</small></div><div className="transform-groups">{(['clean', 'jpeg', 'blur', 'resize', 'noise', 'color', 'crop'] as TransformKind[]).map((kind) => <div className="transform-group" key={kind}><span>{kind === 'clean' ? 'Source' : kind}</span><div>{catalog.map((item) => item.kind === kind && <button key={item.id} className={`${selectedId === item.id ? 'active' : ''} ${results[item.id] ? 'complete' : ''}`} onClick={() => selectTransform(item.id)}>{item.short}</button>)}</div></div>)}</div></div>
     </section>
@@ -431,8 +420,10 @@ export default function Home() {
 
     <section className="transform-table section-pad"><div className="section-heading"><div><span className="section-kicker">03 / TEST CONTRACT</span><h2>The exact image<br/>processing suite.</h2></div><p>These controls use the backend’s audited transform IDs and deterministic processing contract.</p></div><div className="table-scroll"><table><thead><tr><th>Transform</th><th>Parameters</th><th>Real-world analog</th></tr></thead><tbody><tr><td>JPEG compression</td><td>quality = 90, 70, 50, 30</td><td>Social-media re-encode, messaging</td></tr><tr><td>Gaussian blur</td><td>kernel σ = 0.5, 1.0, 2.0</td><td>Out-of-focus</td></tr><tr><td>Resize</td><td>scale 0.5× / 0.25× then upscale</td><td>Thumbnail generation</td></tr><tr><td>Gaussian noise</td><td>σ = 0.02, 0.05, 0.10</td><td>Low-light sensor noise</td></tr><tr><td>Color jitter</td><td>brightness / contrast / saturation ±20%</td><td>Filter apps, auto-enhance</td></tr><tr><td>Center crop</td><td>crop 80%</td><td>Profile-picture cropping, framing</td></tr></tbody></table></div></section>
 
-    <section className="team section-pad" aria-labelledby="team-heading"><div className="team-heading"><span className="section-kicker">04 / TEAM</span><h2 id="team-heading">404 Brain Not Found</h2><p>Five contributors, one robust detector.</p></div><div className="team-grid">{teamMembers.map((member, index) => <article className="team-member" key={member.name}><div className="team-avatar-shell"><img src={member.image} alt={`${member.name} portrait`} style={{ objectPosition: member.position }}/><span>{String(index + 1).padStart(2, '0')}</span></div><h3>{member.name}</h3></article>)}</div></section>
-
-    <section className="closing"><div className="closing-mark">R</div><p>404 BRAIN NOT FOUND · TECHJAM 2026</p><h2>RobustFusion keeps<br/><em>synthetic traces visible.</em></h2><a href="#demo">Run the detector ↑</a></section><footer><a className="brand" href="#top"><span className="brand-mark">R</span><span>ROBUSTFUSION</span></a><span>Robust AI-Generated Image Detection via Multi-Cue Fusion</span><span>Calibrated local inference · Job 773086</span></footer>
+    <section className="team-section" id="team">
+      <div className="team-heading"><div><span className="section-kicker">04 / TEAM</span><h2>404 Brain Not Found</h2></div><p>Five contributors, one robust detector.</p></div>
+      <div className="team-grid">{teamMembers.map((member, index) => <article className="team-member" key={member.name}><div className="portrait-frame"><img src={member.image} alt={`${member.name} portrait`}/><span>{String(index + 1).padStart(2, '0')}</span></div><h3>{member.name}</h3></article>)}</div>
+    </section>
+    <footer className="team-footer"><a className="closing-mark" href="#top" aria-label="Back to top">R</a></footer>
   </main>;
 }
